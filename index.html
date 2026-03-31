@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taylored.AI — Save Your Business Money with AI Automation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+
+/* ─── Variables ──────────────────────────────────────────────── */
+:root {
+  --black:      #0A0B0A;
+  --charcoal:   #1C1C1C;
+  --green:      #0D5C3A;
+  --green-dark: #094A2F;
+  --blue:       #0B3D6B;
+  --mint:       #00C471;
+  --mint-dim:   rgba(0,196,113,.1);
+  --white:      #FFFFFF;
+  --off:        #F6F8F6;
+  --soft-white: #F0F4F0;
+  --border:     #E2E8E2;
+  --border2:    #C8D5C8;
+  --muted:      #5A6672;
+  --nav-h:      68px;
+  --r:          12px;
+  --ease:       cubic-bezier(.4,0,.2,1);
+}
+
+/* ─── Reset ──────────────────────────────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',-apple-system,sans-serif;background:var(--white);color:var(--charcoal);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+img{display:block}
+ul{list-style:none}
+
+/* ─── NAV ────────────────────────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  padding: 0 clamp(20px,4vw,56px);
+  gap: 20px;
+  z-index: 200;
+  background: rgba(255,255,255,.92);
+  border-bottom: 1px solid transparent;
+  transition: border-color .25s, box-shadow .25s;
+}
+nav.scrolled {
+  border-bottom-color: var(--border);
+  box-shadow: 0 2px 20px rgba(0,0,0,.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Logo */
+.logo { display:flex; align-items:center; gap:10px; flex-shrink:0; }
+.logo img { height:28px; width:28px; object-fit:contain; }
+.logo-text { font-family:'Syne',sans-serif; font-size:17px; font-weight:700; color:var(--black); white-space:nowrap; letter-spacing:-.3px; }
+.logo-text em { font-style:normal; color:var(--green); }
+
+/* Center tabs */
+.nav-center { flex:1; display:flex; justify-content:center; align-items:center; gap:2px; }
+
+.nav-tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+  border-radius: 8px;
+  transition: color .18s, background .18s;
+  white-space: nowrap;
+  overflow: visible;
+  font-family: 'DM Sans', sans-serif;
+}
+.nav-tab:hover { color: var(--black); background: var(--off); }
+.nav-tab.active-tab { color: var(--green); }
+.nav-tab svg { width:12px; height:12px; flex-shrink:0; transition:transform .2s; }
+.nav-tab:hover svg { transform:rotate(180deg); }
+
+/* Mega dropdown */
+.nav-drop {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  width: 420px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 8px 12px 12px;
+  padding-top: 14px; /* visual space from button */
+  box-shadow: 0 20px 60px rgba(0,0,0,.12), 0 4px 16px rgba(0,0,0,.06);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .15s var(--ease), transform .15s var(--ease);
+  z-index: 300;
+}
+/* Transparent bridge fills the gap so mouse can reach the dropdown */
+.nav-drop::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0; right: 0;
+  height: 10px;
+}
+.nav-tab:hover .nav-drop {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateX(-50%) translateY(0);
+}
+/* Right-anchor dropdown for last tab to prevent off-screen overflow */
+.nav-tab:nth-child(2) .nav-drop {
+  left: auto;
+  right: 0;
+  transform: translateY(-4px);
+}
+.nav-tab:nth-child(2):hover .nav-drop {
+  transform: translateY(0);
+}
+.drop-label { font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); padding:0 8px 10px; border-bottom:1px solid var(--border); margin-bottom:8px; }
+
+.drop-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 8px;
+  border-radius: 9px;
+  transition: background .15s;
+  cursor: pointer;
+}
+.drop-item:hover { background: var(--off); }
+.drop-icon { width:34px; height:34px; background:var(--mint-dim); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:15px; flex-shrink:0; }
+.drop-txt { flex:1; min-width:0; }
+.drop-txt strong { display:block; font-size:13.5px; font-weight:600; color:var(--black); margin-bottom:3px; white-space:normal; }
+.drop-txt span { font-size:12.5px; color:var(--muted); line-height:1.5; display:block; white-space:normal; word-wrap:break-word; }
+.drop-go { margin-top:4px; font-size:11.5px; font-weight:600; color:var(--green); }
+
+/* Right */
+.nav-right { display:flex; align-items:center; gap:8px; flex-shrink:0; }
+.btn-ghost-sm {
+  display: flex; align-items: center; gap:6px;
+  padding: 8px 15px; font-size:13.5px; font-weight:500;
+  color: var(--muted); border:1px solid var(--border); border-radius:8px;
+  transition: all .2s; white-space:nowrap; font-family:'DM Sans',sans-serif;
+}
+.btn-ghost-sm:hover { color:var(--black); border-color:var(--border2); background:var(--off); }
+.btn-green-sm {
+  display: inline-flex; align-items: center; gap:6px;
+  padding: 9px 20px; font-size:13.5px; font-weight:600;
+  color: #fff; background:var(--green); border-radius:8px;
+  transition: all .2s; white-space:nowrap; font-family:'DM Sans',sans-serif;
+}
+.btn-green-sm:hover { background:var(--green-dark); transform:translateY(-1px); box-shadow:0 6px 20px rgba(13,92,58,.3); }
+
+/* ─── Drawer ─────────────────────────────────────────────────── */
+.overlay { position:fixed; inset:0; background:rgba(0,0,0,.45); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); z-index:400; opacity:0; pointer-events:none; transition:opacity .3s var(--ease); }
+.overlay.open { opacity:1; pointer-events:all; }
+.drawer {
+  position: fixed; top:0; right:0;
+  width: 380px; max-width:92vw; height:100vh;
+  background: var(--white);
+  border-left: 1px solid var(--border);
+  padding: 32px 24px;
+  z-index: 401;
+  transform: translateX(110%);
+  transition: transform .35s cubic-bezier(.4,0,.2,1);
+  overflow-y: auto;
+}
+.drawer.open { transform:translateX(0); }
+.drawer-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; }
+.drawer-head h3 { font-family:'Syne',sans-serif; font-size:20px; font-weight:700; color:var(--black); }
+.drawer-close { width:34px; height:34px; display:flex; align-items:center; justify-content:center; background:var(--off); border-radius:8px; font-size:18px; color:var(--muted); transition:all .18s; }
+.drawer-close:hover { background:var(--border); color:var(--black); }
+.drawer-sub { font-size:13.5px; color:var(--muted); margin-bottom:24px; line-height:1.55; }
+
+.ind-card {
+  border:1px solid var(--border); border-radius:12px; padding:18px; margin-bottom:10px;
+  transition:all .2s; cursor:default; position:relative; overflow:hidden;
+}
+.ind-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--green); opacity:0; transition:opacity .2s; border-radius:2px 0 0 2px; }
+.ind-card:hover { border-color:rgba(13,92,58,.3); background:rgba(13,92,58,.03); }
+.ind-card:hover::before { opacity:1; }
+.ind-card-head { display:flex; align-items:center; gap:10px; margin-bottom:7px; }
+.ind-emoji { font-size:20px; }
+.ind-card h4 { font-family:'Syne',sans-serif; font-size:14.5px; font-weight:700; color:var(--black); }
+.ind-card p { font-size:12.5px; color:var(--muted); line-height:1.5; }
+.ind-tags { display:flex; flex-wrap:wrap; gap:5px; margin-top:10px; }
+.ind-tag { font-size:11px; font-weight:500; padding:3px 9px; background:var(--mint-dim); color:var(--green); border-radius:20px; font-family:'DM Sans',sans-serif; }
+
+/* ─── Hero ───────────────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: calc(var(--nav-h) + 80px) clamp(20px,6vw,100px) 80px;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle geometric background */
+.hero-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 40%, black 20%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 40%, black 20%, transparent 100%);
+  opacity: .5;
+}
+.hero-corner {
+  position: absolute;
+  pointer-events: none;
+}
+.hero-corner-tl { top:0; left:0; width:400px; height:400px; background:radial-gradient(circle at 0% 0%, rgba(13,92,58,.06) 0%, transparent 70%); }
+.hero-corner-br { bottom:0; right:0; width:400px; height:400px; background:radial-gradient(circle at 100% 100%, rgba(11,61,107,.05) 0%, transparent 70%); }
+
+.hero-content { position:relative; z-index:1; max-width:900px; }
+
+.badge {
+  display: inline-flex; align-items:center; gap:8px;
+  padding: 7px 16px;
+  background: var(--mint-dim);
+  border: 1px solid rgba(0,196,113,.25);
+  border-radius: 50px;
+  font-size: 13px; font-weight:500; color:var(--green);
+  margin-bottom: 28px;
+}
+.badge-dot { width:7px; height:7px; background:var(--mint); border-radius:50%; animation:pulse 2.2s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.75)} }
+
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(46px, 7.5vw, 88px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -1.5px;
+  color: var(--black);
+  margin-bottom: 22px;
+}
+@media (max-width:768px){ .hero h1 { letter-spacing:-0.5px; } }
+.hero h1 span { color: var(--green); }
+
+.hero-sub {
+  font-size: clamp(16px,2.2vw,20px); color:var(--muted);
+  max-width:520px; margin:0 auto 38px; line-height:1.7;
+}
+
+.hero-actions {
+  display: flex; align-items:center; justify-content:center;
+  gap: 12px; flex-wrap:wrap; margin-bottom:52px;
+}
+
+.btn-primary {
+  display: inline-flex; align-items:center; gap:8px;
+  padding: 16px 34px; font-size:16px; font-weight:600;
+  color: #fff; background:var(--green); border-radius:10px;
+  font-family:'DM Sans',sans-serif; transition:all .22s;
+}
+.btn-primary:hover { background:var(--green-dark); transform:translateY(-2px); box-shadow:0 12px 32px rgba(13,92,58,.3); }
+
+.btn-outline-lg {
+  display: inline-flex; align-items:center; gap:8px;
+  padding: 16px 28px; font-size:15.5px; font-weight:500;
+  color: var(--black); border:1.5px solid var(--border2); border-radius:10px;
+  font-family:'DM Sans',sans-serif; transition:all .22s;
+}
+.btn-outline-lg:hover { border-color:var(--green); color:var(--green); background:rgba(13,92,58,.04); }
+
+.trust-row { display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap; }
+.trust-label { font-size:13px; color:var(--muted); }
+.trust-pill {
+  font-size:13px; font-weight:500; padding:5px 13px;
+  border:1.5px solid var(--border); border-radius:50px; color:var(--muted);
+  transition:all .2s; cursor:default;
+}
+.trust-pill:hover { border-color:var(--green); color:var(--green); }
+
+/* ─── Section base ───────────────────────────────────────────── */
+.section { padding:clamp(80px,10vw,120px) clamp(20px,6vw,80px); }
+.inner { max-width:1100px; margin:0 auto; }
+.s-label { font-size:11.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--green); margin-bottom:12px; font-family:'DM Sans',sans-serif; }
+.s-head { font-family:'Syne',sans-serif; font-size:clamp(28px,4vw,50px); font-weight:800; letter-spacing:-1px; line-height:1.1; color:var(--black); margin-bottom:16px; }
+.s-sub { font-size:17px; color:var(--muted); max-width:520px; line-height:1.7; }
+
+/* ─── Services (tabbed full detail) ─────────────────────────── */
+.svc-section { background:var(--off); }
+
+.svc-tab-row {
+  display: flex; gap:6px; flex-wrap:wrap;
+  margin-bottom: 48px;
+  padding: 6px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  display: inline-flex;
+}
+.svc-tab-btn {
+  padding: 10px 20px; font-size:14px; font-weight:600;
+  color: var(--muted); border-radius:8px; transition:all .2s;
+  font-family:'DM Sans',sans-serif; white-space:nowrap;
+}
+.svc-tab-btn:hover { color:var(--black); background:var(--off); }
+.svc-tab-btn.active { background:var(--green); color:#fff; box-shadow:0 4px 12px rgba(13,92,58,.25); }
+
+/* Tab panels */
+.svc-panel { display:none; }
+.svc-panel.active { display:block; }
+
+.svc-panel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.svc-panel-left {}
+.svc-panel-desc {
+  font-size: 17px; color:var(--muted); line-height:1.75;
+  margin-bottom: 32px; max-width:460px;
+}
+
+.example-cards { display:flex; flex-direction:column; gap:12px; }
+.ex-card {
+  background:var(--white); border:1px solid var(--border);
+  border-radius:12px; padding:18px 20px;
+  display:flex; align-items:flex-start; gap:14px;
+  transition:all .2s; cursor:default;
+}
+.ex-card:hover { border-color:rgba(13,92,58,.3); box-shadow:0 4px 16px rgba(0,0,0,.06); }
+.ex-icon { width:38px; height:38px; background:var(--mint-dim); border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:17px; flex-shrink:0; }
+.ex-text strong { display:block; font-size:14px; font-weight:600; color:var(--black); margin-bottom:3px; }
+.ex-text span { font-size:13px; color:var(--muted); line-height:1.5; }
+.ex-result { display:inline-block; margin-top:6px; font-size:11.5px; font-weight:600; color:var(--green); background:var(--mint-dim); padding:2px 9px; border-radius:20px; }
+
+.svc-panel-right {}
+
+.video-placeholder {
+  background: var(--black);
+  border-radius: 16px;
+  aspect-ratio: 16/10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .2s;
+  margin-bottom: 16px;
+}
+.video-placeholder:hover { transform:scale(1.01); }
+.video-placeholder::before {
+  content:'';
+  position:absolute; inset:0;
+  background: linear-gradient(135deg, rgba(13,92,58,.3) 0%, rgba(11,61,107,.2) 100%);
+}
+.video-placeholder img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: .15;
+  filter: invert(1);
+}
+.play-btn {
+  width: 64px; height:64px;
+  background: rgba(255,255,255,.15);
+  border: 2px solid rgba(255,255,255,.3);
+  border-radius: 50%;
+  display: flex; align-items:center; justify-content:center;
+  position: relative; z-index:1;
+  transition: all .2s;
+}
+.video-placeholder:hover .play-btn { background:rgba(255,255,255,.25); border-color:rgba(255,255,255,.5); transform:scale(1.08); }
+.play-btn svg { width:22px; height:22px; fill:#fff; margin-left:4px; }
+.video-label { position:relative; z-index:1; font-size:14px; font-weight:500; color:rgba(255,255,255,.7); text-align:center; max-width:240px; font-family:'DM Sans',sans-serif; }
+
+.video-note { font-size:13px; color:var(--muted); text-align:center; }
+
+.svc-cta-row { margin-top:36px; display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+.svc-learn-more { font-size:14px; font-weight:500; color:var(--muted); }
+
+/* ─── Problem ────────────────────────────────────────────────── */
+.prob-grid { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:center; }
+
+.prob-list { margin-top:28px; }
+.prob-list li {
+  display:flex; align-items:flex-start; gap:14px;
+  padding:14px 0; border-bottom:1px solid var(--border);
+  font-size:15.5px; color:var(--muted); line-height:1.55;
+}
+.prob-list li:last-child { border-bottom:none; }
+.prob-dot { width:6px; height:6px; border-radius:50%; background:var(--green); flex-shrink:0; margin-top:9px; }
+
+.prob-card { background:var(--black); border-radius:20px; padding:40px; }
+.prob-card blockquote {
+  font-family:'Syne',sans-serif; font-size:clamp(18px,2.2vw,22px);
+  font-weight:600; color:var(--soft-white); line-height:1.45;
+  margin-bottom:32px; border-left:3px solid var(--mint); padding-left:20px;
+}
+.stats { display:flex; gap:36px; flex-wrap:wrap; }
+.stat-num { font-family:'Syne',sans-serif; font-size:44px; font-weight:800; color:var(--mint); letter-spacing:-2px; line-height:1; margin-bottom:5px; }
+.stat-lbl { font-size:13px; color:rgba(240,244,240,.5); }
+
+/* ─── How It Works ───────────────────────────────────────────── */
+.steps-row { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:56px; }
+.step-card {
+  background:var(--white); border:1px solid var(--border); border-radius:var(--r);
+  padding:32px; transition:all .2s; position:relative; overflow:hidden;
+}
+.step-card:hover { border-color:rgba(13,92,58,.3); transform:translateY(-3px); box-shadow:0 12px 40px rgba(0,0,0,.08); }
+.step-num { font-family:'Syne',sans-serif; font-size:72px; font-weight:800; color:rgba(13,92,58,.08); line-height:1; letter-spacing:-3px; margin-bottom:20px; position:absolute; top:14px; right:18px; }
+.step-card h3 { font-family:'Syne',sans-serif; font-size:17px; font-weight:700; color:var(--black); margin-bottom:10px; position:relative; }
+.step-card p { font-size:14.5px; color:var(--muted); line-height:1.65; position:relative; }
+
+/* ─── About ──────────────────────────────────────────────────── */
+.about-grid { display:grid; grid-template-columns:1fr 1.3fr; gap:72px; align-items:center; }
+.about-img {
+  aspect-ratio:4/5; background:var(--off); border:1px solid var(--border);
+  border-radius:24px; display:flex; align-items:center; justify-content:center;
+  position:relative; overflow:hidden;
+}
+.about-img::before { content:''; position:absolute; inset:0; background:linear-gradient(160deg, rgba(13,92,58,.06) 0%, transparent 60%); }
+.about-img img { height:90px; opacity:.12; position:relative; }
+.about-text p { font-size:16.5px; color:var(--muted); line-height:1.8; margin-bottom:18px; }
+.about-text p:first-of-type { font-size:18px; color:var(--charcoal); font-weight:500; }
+.btn-outline-md {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:13px 22px; font-size:15px; font-weight:500;
+  color:var(--black); border:1.5px solid var(--border2); border-radius:9px;
+  font-family:'DM Sans',sans-serif; transition:all .2s; margin-top:8px;
+}
+.btn-outline-md:hover { border-color:var(--green); color:var(--green); background:rgba(13,92,58,.04); }
+
+/* ─── Final CTA ──────────────────────────────────────────────── */
+.cta-wrap { background:var(--black); text-align:center; }
+.cta-inner { max-width:640px; margin:0 auto; }
+.cta-inner h2 { font-family:'Syne',sans-serif; font-size:clamp(32px,5vw,58px); font-weight:800; letter-spacing:-1px; line-height:1.1; color:var(--soft-white); margin-bottom:16px; }
+.cta-inner p { font-size:17.5px; color:rgba(240,244,240,.55); line-height:1.65; margin-bottom:38px; }
+.btn-mint {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:17px 40px; font-size:17px; font-weight:700;
+  color:var(--black); background:var(--mint); border-radius:11px;
+  font-family:'DM Sans',sans-serif; transition:all .22s;
+}
+.btn-mint:hover { background:#00D97A; transform:translateY(-2px); box-shadow:0 14px 40px rgba(0,196,113,.35); }
+.cta-note { font-size:13px; color:rgba(240,244,240,.3); margin-top:16px; }
+.cta-contact { display:flex; align-items:center; justify-content:center; gap:12px; margin-top:20px; flex-wrap:wrap; }
+.cta-contact-link { font-size:14px; color:rgba(240,244,240,.45); transition:color .18s; }
+.cta-contact-link:hover { color:rgba(240,244,240,.8); }
+.cta-contact-sep { color:rgba(240,244,240,.2); }
+
+/* ─── Footer ─────────────────────────────────────────────────── */
+footer {
+  padding:36px clamp(20px,6vw,80px); border-top:1px solid rgba(255,255,255,.07);
+  background:var(--black); display:flex; align-items:center; justify-content:space-between;
+  flex-wrap:wrap; gap:14px; max-width:100%;
+}
+.foot-logo { display:flex; align-items:center; gap:8px; font-family:'Syne',sans-serif; font-size:14.5px; font-weight:600; color:rgba(240,244,240,.4); }
+.foot-logo img { height:22px; filter:invert(1); opacity:.3; }
+.foot-links { display:flex; gap:22px; }
+.foot-links a { font-size:13.5px; color:rgba(240,244,240,.3); transition:color .18s; }
+.foot-links a:hover { color:rgba(240,244,240,.65); }
+.foot-copy { font-size:12.5px; color:rgba(240,244,240,.2); }
+
+/* ─── Scroll animations ──────────────────────────────────────── */
+.reveal { opacity:0; transform:translateY(20px); transition:opacity .6s var(--ease), transform .6s var(--ease); }
+.reveal.d1{transition-delay:.08s} .reveal.d2{transition-delay:.16s} .reveal.d3{transition-delay:.24s}
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* ─── Responsive ─────────────────────────────────────────────── */
+@media(max-width:960px){
+  .nav-center{display:none}
+  .prob-grid,.about-grid{grid-template-columns:1fr;gap:40px}
+  .steps-row{grid-template-columns:1fr}
+  .svc-panel-grid{grid-template-columns:1fr;gap:32px}
+  .svc-tab-row{display:flex;flex-wrap:wrap}
+}
+@media(max-width:620px){
+  .nav-right .btn-ghost-sm{display:none}
+}
+
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ───────────────────────────────────────────────────── -->
+<nav id="nav">
+  <a href="#" class="logo">
+    <img src="Logo.png" alt="Taylored.AI logo">
+    <span class="logo-text">Taylored<em>.AI</em></span>
+  </a>
+
+  <div class="nav-center">
+
+    <button class="nav-tab" data-service="ai-tool">
+      AI as Your Custom Tool
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 6l4 4 4-4"/></svg>
+      <div class="nav-drop">
+        <div class="drop-label">AI as Your Custom Tool</div>
+        <div class="drop-item" data-service="ai-tool">
+          <div class="drop-icon">🤖</div>
+          <div class="drop-txt"><strong>Custom AI Assistant</strong><span>An AI built around your business — answers questions, collects info, and books calls.</span><div class="drop-go">See examples →</div></div>
+        </div>
+        <div class="drop-item" data-service="ai-tool">
+          <div class="drop-icon">🧠</div>
+          <div class="drop-txt"><strong>AI Team Training</strong><span>Get your team using AI tools that save real time daily.</span><div class="drop-go">See examples →</div></div>
+        </div>
+        <div class="drop-item" data-service="ai-tool">
+          <div class="drop-icon">🔧</div>
+          <div class="drop-txt"><strong>Claude Bot Setup</strong><span>A Claude-powered assistant built for your business and your clients.</span><div class="drop-go">See examples →</div></div>
+        </div>
+      </div>
+    </button>
+
+    <button class="nav-tab" data-service="company-agents">
+      Automation with Company Agents
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 6l4 4 4-4"/></svg>
+      <div class="nav-drop">
+        <div class="drop-label">Automation with Company Agents</div>
+        <div class="drop-item" data-service="company-agents">
+          <div class="drop-icon">⚙️</div>
+          <div class="drop-txt"><strong>Workflow Automation</strong><span>Connect your tools and cut the manual steps in between.</span><div class="drop-go">See examples →</div></div>
+        </div>
+        <div class="drop-item" data-service="company-agents">
+          <div class="drop-icon">📄</div>
+          <div class="drop-txt"><strong>Document Drafting</strong><span>Proposals, reports, and contracts generated automatically.</span><div class="drop-go">See examples →</div></div>
+        </div>
+        <div class="drop-item" data-service="company-agents">
+          <div class="drop-icon">🔄</div>
+          <div class="drop-txt"><strong>Back Office Agents</strong><span>Agents that handle your repetitive admin work around the clock.</span><div class="drop-go">See examples →</div></div>
+        </div>
+      </div>
+    </button>
+
+  </div>
+
+  <div class="nav-right">
+    <button class="btn-ghost-sm" id="openDrawer">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      Industries
+    </button>
+    <a href="mailto:benledwith@gmail.com" class="btn-green-sm">Book a Free Call →</a>
+  </div>
+</nav>
+
+<!-- ─── DRAWER ─────────────────────────────────────────────────── -->
+<div class="overlay" id="overlay"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head">
+    <h3>Industries We Serve</h3>
+    <button class="drawer-close" id="closeDrawer">✕</button>
+  </div>
+  <p class="drawer-sub">Each automation is built around how your industry actually operates — not a generic template dropped into your business.</p>
+  <div class="ind-card">
+    <div class="ind-card-head"><span class="ind-emoji">🏠</span><h4>Real Estate</h4></div>
+    <p>Agents and brokerages losing hours on manual follow-up, listing paperwork, and pulling market reports by hand.</p>
+    <div class="ind-tags"><span class="ind-tag">Lead Follow-Up</span><span class="ind-tag">Listing Docs</span><span class="ind-tag">Market Reports</span></div>
+  </div>
+  <div class="ind-card">
+    <div class="ind-card-head"><span class="ind-emoji">⚖️</span><h4>Law Firms</h4></div>
+    <p>Attorneys spending billable hours on client intake, drafting repetitive documents, and chasing client communications.</p>
+    <div class="ind-tags"><span class="ind-tag">Client Intake</span><span class="ind-tag">Contract Drafting</span><span class="ind-tag">Billing Summaries</span></div>
+  </div>
+  <div class="ind-card">
+    <div class="ind-card-head"><span class="ind-emoji">📈</span><h4>Financial Advisors</h4></div>
+    <p>Advisors buried in monthly client updates, pre-meeting prep, and compliance documentation that never seems to end.</p>
+    <div class="ind-tags"><span class="ind-tag">Client Reports</span><span class="ind-tag">Meeting Prep</span><span class="ind-tag">Compliance Docs</span></div>
+  </div>
+  <div class="ind-card">
+    <div class="ind-card-head"><span class="ind-emoji">🏗️</span><h4>Construction</h4></div>
+    <p>Contractors and GCs buried in bid writing, daily reports, change orders, and subcontractor back-and-forth.</p>
+    <div class="ind-tags"><span class="ind-tag">Bid Writing</span><span class="ind-tag">Daily Reports</span><span class="ind-tag">Change Orders</span></div>
+  </div>
+  <div class="ind-card">
+    <div class="ind-card-head"><span class="ind-emoji">🏥</span><h4>Healthcare & Private Practice</h4></div>
+    <p>Clinics and private practices spending admin time on intake forms, appointment reminders, and billing follow-up that should run itself.</p>
+    <div class="ind-tags"><span class="ind-tag">Patient Intake</span><span class="ind-tag">Appointment Reminders</span><span class="ind-tag">Billing Follow-Up</span></div>
+  </div>
+  <div class="ind-card">
+    <div class="ind-card-head"><span class="ind-emoji">🛡️</span><h4>Insurance Agencies</h4></div>
+    <p>Agents losing time on manual quote follow-up, policy renewal outreach, and updating clients on claims status.</p>
+    <div class="ind-tags"><span class="ind-tag">Quote Follow-Up</span><span class="ind-tag">Policy Renewals</span><span class="ind-tag">Claims Updates</span></div>
+  </div>
+  <div class="ind-card">
+    <div class="ind-card-head"><span class="ind-emoji">🏦</span><h4>Mortgage Brokers</h4></div>
+    <p>Brokers chasing down borrower documents, manually updating clients on loan status, and sending rate alerts by hand.</p>
+    <div class="ind-tags"><span class="ind-tag">Doc Collection</span><span class="ind-tag">Loan Status Updates</span><span class="ind-tag">Rate Alerts</span></div>
+  </div>
+  <div class="ind-card">
+    <div class="ind-card-head"><span class="ind-emoji">🏢</span><h4>Property Management</h4></div>
+    <p>Property managers buried in tenant communication, maintenance request routing, and lease renewal follow-up.</p>
+    <div class="ind-tags"><span class="ind-tag">Tenant Comms</span><span class="ind-tag">Maintenance Requests</span><span class="ind-tag">Lease Renewals</span></div>
+  </div>
+  <div class="ind-card">
+    <div class="ind-card-head"><span class="ind-emoji">📒</span><h4>Accounting Firms</h4></div>
+    <p>Accountants manually chasing client documents, preparing month-end reports, and sending the same client updates every cycle.</p>
+    <div class="ind-tags"><span class="ind-tag">Month-End Reports</span><span class="ind-tag">Doc Collection</span><span class="ind-tag">Client Updates</span></div>
+  </div>
+  <div class="ind-card">
+    <div class="ind-card-head"><span class="ind-emoji">🚛</span><h4>Logistics & Freight</h4></div>
+    <p>Freight brokers spending hours on load status updates, carrier communications, and drafting rate quotes from scratch.</p>
+    <div class="ind-tags"><span class="ind-tag">Load Updates</span><span class="ind-tag">Carrier Comms</span><span class="ind-tag">Rate Quotes</span></div>
+  </div>
+</div>
+
+<!-- ─── HERO ──────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-corner hero-corner-tl"></div>
+  <div class="hero-corner hero-corner-br"></div>
+  <div class="hero-content">
+    <div class="badge hero-load" style="--d:.05s">
+      <span class="badge-dot"></span>
+      AI Automation Partner — Not a Vendor
+    </div>
+    <h1 class="hero-load" style="--d:.15s">
+      Save your business money<br>
+      <span>with AI automation.</span>
+    </h1>
+    <p class="hero-sub hero-load" style="--d:.25s">
+      We find the tasks eating your payroll, build custom AI automations to replace them, and stay on as your partner to keep improving. Most clients save thousands per month — without cutting a single person.
+    </p>
+    <div class="hero-actions hero-load" style="--d:.35s">
+      <a href="mailto:benledwith@gmail.com" class="btn-primary">Book a Free Call →</a>
+      <a href="#services" class="btn-outline-lg">See What We Build</a>
+    </div>
+    <div class="trust-row hero-load" style="--d:.45s">
+      <span class="trust-label">Built for:</span>
+      <span class="trust-pill">Real Estate</span>
+      <span class="trust-pill">Law Firms</span>
+      <span class="trust-pill">Financial Advisors</span>
+      <span class="trust-pill">Construction</span>
+      <span class="trust-pill">Healthcare</span>
+      <span class="trust-pill">Insurance</span>
+      <span class="trust-pill">& More</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICES (tabbed) ─────────────────────────────────────── -->
+<div class="svc-section" id="services">
+  <div class="section inner">
+    <p class="s-label reveal">What We Build</p>
+    <h2 class="s-head reveal d1">Pick an area. We'll show you what's possible.</h2>
+    <p class="s-sub reveal d1" style="margin-bottom:40px;">Click any category to see real examples and how we build it.</p>
+
+    <div class="svc-tab-row reveal d2">
+      <button class="svc-tab-btn active" data-target="ai-tool">🤖 AI as Your Custom Tool</button>
+      <button class="svc-tab-btn" data-target="company-agents">⚙️ Automation with Company Agents</button>
+    </div>
+
+    <!-- Lead Generation Panel -->
+    <div class="svc-panel active" id="panel-lead-gen">
+      <div class="svc-panel-grid">
+        <div class="svc-panel-left">
+          <h3 class="s-head" style="font-size:clamp(22px,3vw,34px);margin-bottom:12px;">Stop losing leads to slow follow-up.</h3>
+          <p class="svc-panel-desc">Most businesses lose deals not because their product is worse — but because they followed up too slowly. We build automations that respond within seconds, qualify the right leads, and keep your pipeline moving without you lifting a finger.</p>
+          <div class="example-cards">
+            <div class="ex-card">
+              <div class="ex-icon">🏠</div>
+              <div class="ex-text">
+                <strong>Real Estate Agent — Automated Lead Follow-Up</strong>
+                <span>Every new Zillow/Realtor.com lead gets a personalized response within 60 seconds, 24/7 — no manual sending.</span>
+                <div class="ex-result">Saves 2+ hrs/day on manual outreach</div>
+              </div>
+            </div>
+            <div class="ex-card">
+              <div class="ex-icon">⚖️</div>
+              <div class="ex-text">
+                <strong>Law Firm — Intake Qualification Bot</strong>
+                <span>Inbound inquiries are screened automatically. Only qualified prospects reach the attorney's calendar.</span>
+                <div class="ex-result">Cuts intake time by 80%</div>
+              </div>
+            </div>
+            <div class="ex-card">
+              <div class="ex-icon">📈</div>
+              <div class="ex-text">
+                <strong>Financial Advisor — Drip Email Sequences</strong>
+                <span>Prospects who don't book get a personalized 6-email sequence over 3 weeks — written in the advisor's voice.</span>
+                <div class="ex-result">30% more booked discovery calls</div>
+              </div>
+            </div>
+          </div>
+          <div class="svc-cta-row">
+            <a href="mailto:benledwith@gmail.com" class="btn-primary">Book a Free Call →</a>
+            <span class="svc-learn-more">We'll show you what this looks like for your business.</span>
+          </div>
+        </div>
+        <div class="svc-panel-right">
+          <div class="video-placeholder">
+            <img src="Logo.png" alt="">
+            <div class="play-btn">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="video-label">Watch: Lead follow-up automation in action</div>
+          </div>
+          <p class="video-note">Demo video coming soon — book a call to see a live walkthrough.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Back Office Panel -->
+    <div class="svc-panel" id="panel-back-office">
+      <div class="svc-panel-grid">
+        <div class="svc-panel-left">
+          <h3 class="s-head" style="font-size:clamp(22px,3vw,34px);margin-bottom:12px;">Cut the paperwork. Keep the results.</h3>
+          <p class="svc-panel-desc">The repetitive back-office work that fills your evenings — drafting, reporting, data entry — can be handled by AI. We build the automation so you review, approve, and move on.</p>
+          <div class="example-cards">
+            <div class="ex-card">
+              <div class="ex-icon">🏗️</div>
+              <div class="ex-text">
+                <strong>Construction GC — Automated Daily Reports</strong>
+                <span>Field notes collected via voice memo. Report drafted, formatted, and emailed to the client by end of day — automatically.</span>
+                <div class="ex-result">1.5 hrs saved per job site per day</div>
+              </div>
+            </div>
+            <div class="ex-card">
+              <div class="ex-icon">⚖️</div>
+              <div class="ex-text">
+                <strong>Law Firm — Client Update Emails</strong>
+                <span>Matter updates pulled from Clio and turned into a professional client email — ready to review and send in one click.</span>
+                <div class="ex-result">Saves 45 min per attorney per day</div>
+              </div>
+            </div>
+            <div class="ex-card">
+              <div class="ex-icon">📈</div>
+              <div class="ex-text">
+                <strong>Financial Advisor — Monthly Portfolio Summaries</strong>
+                <span>Performance data pulled, summarized in plain English, and formatted as a client-ready PDF — for every client, every month.</span>
+                <div class="ex-result">4 hrs saved at month-end</div>
+              </div>
+            </div>
+          </div>
+          <div class="svc-cta-row">
+            <a href="mailto:benledwith@gmail.com" class="btn-primary">Book a Free Call →</a>
+            <span class="svc-learn-more">We'll map the exact automation for your workflow.</span>
+          </div>
+        </div>
+        <div class="svc-panel-right">
+          <div class="video-placeholder">
+            <img src="Logo.png" alt="">
+            <div class="play-btn">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="video-label">Watch: Document drafting automation demo</div>
+          </div>
+          <p class="video-note">Demo video coming soon — book a call to see a live walkthrough.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Marketing Panel -->
+    <div class="svc-panel" id="panel-marketing">
+      <div class="svc-panel-grid">
+        <div class="svc-panel-left">
+          <h3 class="s-head" style="font-size:clamp(22px,3vw,34px);margin-bottom:12px;">Content that gets done — every week.</h3>
+          <p class="svc-panel-desc">Most small businesses fall behind on marketing because creating content is time-consuming. We build automations that draft it for you — in your voice, on your schedule — so all you do is review and post.</p>
+          <div class="example-cards">
+            <div class="ex-card">
+              <div class="ex-icon">🏠</div>
+              <div class="ex-text">
+                <strong>Real Estate Agent — Listing Descriptions</strong>
+                <span>Property details entered once. Full MLS description, social post, and email blast drafted automatically — ready in minutes.</span>
+                <div class="ex-result">45 min of writing → 5 min review</div>
+              </div>
+            </div>
+            <div class="ex-card">
+              <div class="ex-icon">📈</div>
+              <div class="ex-text">
+                <strong>Financial Advisor — Monthly Newsletter</strong>
+                <span>Market commentary, portfolio insights, and a personal note drafted each month — in the advisor's tone, ready to send.</span>
+                <div class="ex-result">3 hrs of writing → 20 min review</div>
+              </div>
+            </div>
+            <div class="ex-card">
+              <div class="ex-icon">🏗️</div>
+              <div class="ex-text">
+                <strong>Construction — Bid Proposal Content</strong>
+                <span>Project scope and specs go in. A polished, professional bid proposal comes out — formatted, branded, and ready to send.</span>
+                <div class="ex-result">Bids out 60% faster</div>
+              </div>
+            </div>
+          </div>
+          <div class="svc-cta-row">
+            <a href="mailto:benledwith@gmail.com" class="btn-primary">Book a Free Call →</a>
+            <span class="svc-learn-more">See what content automation looks like for your business.</span>
+          </div>
+        </div>
+        <div class="svc-panel-right">
+          <div class="video-placeholder">
+            <img src="Logo.png" alt="">
+            <div class="play-btn">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="video-label">Watch: Content drafting automation walkthrough</div>
+          </div>
+          <p class="video-note">Demo video coming soon — book a call to see a live walkthrough.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Automation Panel -->
+    <div class="svc-panel" id="panel-automation">
+      <div class="svc-panel-grid">
+        <div class="svc-panel-left">
+          <h3 class="s-head" style="font-size:clamp(22px,3vw,34px);margin-bottom:12px;">Connect your tools. Cut the manual work in between.</h3>
+          <p class="svc-panel-desc">Custom workflow automation, Claude-powered AI assistants, and hands-on team training. If there's a repetitive process in your business, we can probably automate it.</p>
+          <div class="example-cards">
+            <div class="ex-card">
+              <div class="ex-icon">🔧</div>
+              <div class="ex-text">
+                <strong>Claude Bot for Client Q&A</strong>
+                <span>A custom AI assistant trained on your business — answers client questions, collects intake info, and books calls on your behalf.</span>
+                <div class="ex-result">Handles 80% of inbound questions automatically</div>
+              </div>
+            </div>
+            <div class="ex-card">
+              <div class="ex-icon">🔄</div>
+              <div class="ex-text">
+                <strong>CRM to Email Automation</strong>
+                <span>When a deal moves stages in your CRM, the right email or task gets triggered automatically — no manual steps between tools.</span>
+                <div class="ex-result">Zero dropped handoffs between systems</div>
+              </div>
+            </div>
+            <div class="ex-card">
+              <div class="ex-icon">🧠</div>
+              <div class="ex-text">
+                <strong>Team AI Training — Hands-On Setup</strong>
+                <span>We set up AI tools for your team and train them in person. They leave knowing exactly how to use AI for their specific daily tasks.</span>
+                <div class="ex-result">Teams saving 5+ hrs/week within 30 days</div>
+              </div>
+            </div>
+          </div>
+          <div class="svc-cta-row">
+            <a href="mailto:benledwith@gmail.com" class="btn-primary">Book a Free Call →</a>
+            <span class="svc-learn-more">Tell us the problem. We'll figure out the automation.</span>
+          </div>
+        </div>
+        <div class="svc-panel-right">
+          <div class="video-placeholder">
+            <img src="Logo.png" alt="">
+            <div class="play-btn">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="video-label">Watch: Claude bot setup and workflow demo</div>
+          </div>
+          <p class="video-note">Demo video coming soon — book a call to see a live walkthrough.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ─── PROBLEM ───────────────────────────────────────────────── -->
+<div style="background:var(--white);">
+  <div class="section inner">
+    <div class="prob-grid">
+      <div>
+        <p class="s-label reveal">The Problem</p>
+        <h2 class="s-head reveal d1">You're losing hours every week to work AI could handle.</h2>
+        <ul class="prob-list">
+          <li class="reveal d1"><span class="prob-dot"></span>Following up on leads one by one — manually, every single day</li>
+          <li class="reveal d2"><span class="prob-dot"></span>Rewriting the same proposals, reports, and emails from scratch every time</li>
+          <li class="reveal d2"><span class="prob-dot"></span>Copying information between tools that should talk to each other</li>
+          <li class="reveal d3"><span class="prob-dot"></span>Spending evenings on admin work instead of running your business</li>
+        </ul>
+      </div>
+      <div class="prob-card reveal d2">
+        <blockquote>"Most business owners know they should be using AI. The problem is knowing where to start — and getting something that actually works in your specific business."</blockquote>
+        <div class="stats">
+          <div><div class="stat-num">10+</div><div class="stat-lbl">Hours saved per week on average</div></div>
+          <div><div class="stat-num">14</div><div class="stat-lbl">Days to first automation live</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── HOW IT WORKS ──────────────────────────────────────────── -->
+<div style="background:var(--off);">
+  <div class="section inner" id="how">
+    <p class="s-label reveal">How It Works</p>
+    <h2 class="s-head reveal d1">Three steps. Then it runs itself.</h2>
+    <p class="s-sub reveal d1">From your first call to an automation running in your business — in under two weeks.</p>
+    <div class="steps-row">
+      <div class="step-card reveal d1">
+        <div class="step-num">01</div>
+        <h3>We find the highest-impact automation.</h3>
+        <p>Free 30-minute call. We look at your workflow and pinpoint the one automation that will save you the most time — immediately.</p>
+      </div>
+      <div class="step-card reveal d2">
+        <div class="step-num">02</div>
+        <h3>We build it and go live.</h3>
+        <p>We handle everything — design, build, test, launch. Most automations are live in under two weeks. No technical work needed from your team.</p>
+      </div>
+      <div class="step-card reveal d3">
+        <div class="step-num">03</div>
+        <h3>We stay on as your AI partner.</h3>
+        <p>Flat monthly retainer. We monitor what we built, fix what breaks, and keep adding automations as your business grows.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── ABOUT ──────────────────────────────────────────────────── -->
+<div style="background:var(--white);">
+  <div class="section inner">
+    <div class="about-grid">
+      <div class="about-img reveal">
+        <img src="Logo.png" alt="">
+      </div>
+      <div class="about-text">
+        <span class="s-label reveal">About</span>
+        <h2 class="s-head reveal d1" style="font-size:clamp(26px,3.2vw,40px);margin-bottom:24px;">Built by someone who knows what's wasting your time.</h2>
+        <p class="reveal d1">I'm Ben Ledwith. I started Taylored.AI because I kept seeing the same thing — small business owners drowning in work that AI should be handling.</p>
+        <p class="reveal d2">I'm not a software company. I'm not selling a product. I learn your specific business, find the highest-impact problem to fix, build the automation, and stay on to keep improving it.</p>
+        <p class="reveal d2">Flat monthly retainer. No surprise invoices. No jargon. Just real time back in your week.</p>
+        <a href="mailto:benledwith@gmail.com" class="btn-outline-md reveal d3">Book a Free Call →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── FINAL CTA ─────────────────────────────────────────────── -->
+<div class="cta-wrap section" id="cta">
+  <div class="cta-inner">
+    <h2 class="reveal">Ready to stop doing work AI should be doing?</h2>
+    <p class="reveal d1">Book a free 30-minute call. We'll look at your workflow, find the highest-impact automation, and tell you exactly what we'd build — no obligation.</p>
+    <a href="mailto:benledwith@gmail.com" class="btn-mint reveal d2">Book Your Free Call →</a>
+    <p class="cta-note reveal d2">No commitment. No tech background required. Just 30 minutes.</p>
+    <div class="cta-contact reveal d3">
+      <a href="tel:+14087101394" class="cta-contact-link">📞 (408) 710-1394</a>
+      <span class="cta-contact-sep">·</span>
+      <a href="mailto:benledwith@gmail.com" class="cta-contact-link">✉️ benledwith@gmail.com</a>
+    </div>
+  </div>
+</div>
+
+<!-- ─── FOOTER ─────────────────────────────────────────────────── -->
+<footer>
+  <div class="foot-logo">
+    <img src="Logo.png" alt="">
+    Taylored.AI
+  </div>
+  <div class="foot-links">
+    <a href="#services">Services</a>
+    <a href="#how">How It Works</a>
+    <a href="mailto:benledwith@gmail.com">Contact</a>
+  </div>
+  <p class="foot-copy">© 2025 Taylored.AI</p>
+</footer>
+
+<script>
+// ─── Nav scroll ──────────────────────────────────────────────
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 24), { passive: true });
+if (window.scrollY > 24) nav.classList.add('scrolled');
+
+// ─── Nav tab click → scroll to services + activate tab ───────
+document.querySelectorAll('[data-service]').forEach(el => {
+  el.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const svc = el.closest('[data-service]')?.dataset.service || el.dataset.service;
+    if (!svc) return;
+    // Activate the correct tab in the services section
+    document.querySelectorAll('.svc-tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.svc-panel').forEach(p => p.classList.remove('active'));
+    const targetBtn = document.querySelector(`.svc-tab-btn[data-target="${svc}"]`);
+    const targetPanel = document.getElementById(`panel-${svc}`);
+    if (targetBtn) targetBtn.classList.add('active');
+    if (targetPanel) targetPanel.classList.add('active');
+    // Scroll to services section
+    document.getElementById('services').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// ─── In-section tab switching ────────────────────────────────
+document.querySelectorAll('.svc-tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.svc-tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.svc-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    const panel = document.getElementById(`panel-${btn.dataset.target}`);
+    if (panel) panel.classList.add('active');
+  });
+});
+
+// ─── Drawer ──────────────────────────────────────────────────
+const overlay  = document.getElementById('overlay');
+const drawer   = document.getElementById('drawer');
+const openBtn  = document.getElementById('openDrawer');
+const closeBtn = document.getElementById('closeDrawer');
+const open  = () => { overlay.classList.add('open'); drawer.classList.add('open'); document.body.style.overflow = 'hidden'; };
+const close = () => { overlay.classList.remove('open'); drawer.classList.remove('open'); document.body.style.overflow = ''; };
+openBtn.addEventListener('click', open);
+closeBtn.addEventListener('click', close);
+overlay.addEventListener('click', close);
+
+// ─── Scroll reveal ───────────────────────────────────────────
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// ─── Hero load animations ────────────────────────────────────
+const heroEls = document.querySelectorAll('.hero-load');
+heroEls.forEach(el => {
+  el.style.cssText += 'opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.4,0,.2,1) var(--d, 0s), transform .7s cubic-bezier(.4,0,.2,1) var(--d, 0s)';
+});
+requestAnimationFrame(() => {
+  setTimeout(() => {
+    heroEls.forEach(el => { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; });
+  }, 80);
+});
+</script>
+</body>
+</html>
