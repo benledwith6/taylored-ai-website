@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Industries — Tailored AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/site.css?v=5">
+<link rel="stylesheet" href="styles/dark-override.css?v=1">
+<style>
+  .page-hero{background:var(--off-white);padding:80px 48px 60px;border-bottom:1px solid var(--rule)}
+  .page-hero-inner{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end}
+  .page-hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(64px,8vw,124px);line-height:.95;letter-spacing:-.035em}
+  .page-hero h1 em{font-style:normal;color:var(--forest)}
+  .page-hero p{font-size:18px;line-height:1.55;color:var(--text-muted);max-width:46ch;margin-top:20px}
+
+  .ind{padding:120px 48px;border-bottom:1px solid var(--rule)}
+  .ind:nth-of-type(even){background:var(--pure-white)}
+  .ind:nth-of-type(odd){background:var(--off-white)}
+  .ind-wrap{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:240px 1fr;gap:64px;align-items:start}
+  .ind-meta{position:sticky;top:96px;display:flex;flex-direction:column;gap:16px}
+  .ind-meta .im-n{font-family:'Syne',sans-serif;font-weight:800;font-size:88px;line-height:1;letter-spacing:-.035em;color:var(--near-black)}
+  .ind-meta .im-tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--forest);display:flex;align-items:center;gap:8px}
+  .ind-meta .im-tag .dot{width:5px;height:5px;background:var(--forest);border-radius:50%}
+  .ind-main h2{font-family:'Syne',sans-serif;font-weight:700;font-size:64px;letter-spacing:-.028em;line-height:.96;color:var(--near-black);max-width:18ch;margin-bottom:20px}
+  .ind-main h2 em{font-style:normal;color:var(--forest)}
+  .ind-main .lede{font-size:20px;line-height:1.55;color:var(--charcoal);max-width:52ch;margin-bottom:48px}
+  .ind-tasks{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--rule);
+    border:1px solid var(--rule);
+  }
+  .ind-tasks > div{background:var(--pure-white);padding:28px 30px;display:flex;flex-direction:column;gap:10px;min-height:200px}
+  .ind-tasks .it-lbl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--forest)}
+  .ind-tasks h4{font-family:'Syne',sans-serif;font-weight:600;font-size:22px;letter-spacing:-.015em;color:var(--near-black);line-height:1.1}
+  .ind-tasks p{font-size:14px;line-height:1.55;color:var(--text-muted);max-width:36ch}
+  .ind-tasks .it-num{margin-top:auto;display:flex;justify-content:space-between;padding-top:12px;border-top:1px dashed var(--rule);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted)}
+  .ind-tasks .it-num b{color:var(--forest);font-weight:500}
+
+  .ind-oneliner{
+    background:var(--near-black);color:var(--soft-white);padding:48px;margin-top:48px;
+    display:grid;grid-template-columns:auto 1fr auto;gap:40px;align-items:center;
+  }
+  .ind-oneliner .io-q{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:#7c857f;text-transform:uppercase}
+  .ind-oneliner .io-l{font-family:'Syne',sans-serif;font-weight:700;font-size:32px;letter-spacing:-.02em;line-height:1.1;color:var(--soft-white)}
+  .ind-oneliner .io-l em{font-style:normal;color:var(--mint)}
+  .ind-oneliner a{color:var(--mint);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap}
+
+  @media (max-width:1100px){
+    .page-hero-inner,.ind-wrap{grid-template-columns:1fr}
+    .ind-meta{position:static}
+    .ind-tasks{grid-template-columns:1fr}
+    .ind-oneliner{grid-template-columns:1fr;padding:32px}
+  }
+</style>
+</head>
+<body data-page="industries">
+<div class="site">
+  <div data-slot="nav"></div>
+
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div>
+        <span class="eyebrow"><span class="num">03</span> Industries</span>
+        <h1 style="margin-top:32px">Four industries.<br>One <em>approach.</em></h1>
+      </div>
+      <div>
+        <p>We start where we know the math — industries with high back-office hours and a clear link between time saved and dollars earned. Construction is the anchor; real estate, legal, and financial advisors round out 2026.</p>
+        <div class="tickline" style="margin-top:32px">
+          <div><div class="tl-num" style="font-family:'Syne',sans-serif;font-weight:700;font-size:40px">04</div><div class="tl-label">Focus industries</div></div>
+          <div><div class="tl-num" style="font-family:'Syne',sans-serif;font-weight:700;font-size:40px">12+</div><div class="tl-label">Task patterns</div></div>
+          <div><div class="tl-num" style="font-family:'Syne',sans-serif;font-weight:700;font-size:40px">01</div><div class="tl-label">Way of working</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Construction -->
+  <section class="ind" id="construction">
+    <div class="ind-wrap">
+      <div class="ind-meta">
+        <div class="im-tag"><span class="dot"></span><span>Sector 01</span></div>
+        <div class="im-n">01</div>
+        <span class="mono" style="color:var(--text-muted)">Construction · anchor</span>
+      </div>
+      <div class="ind-main">
+        <h2>Bids up.<br>Admin <em>down.</em></h2>
+        <p class="lede">The work your PMs and office staff do by hand on Monday mornings — subcontractor billing, weekly reporting, RFQ intake — is the work we replace first.</p>
+
+        <div class="ind-tasks">
+          <div>
+            <span class="it-lbl">→ Task 01</span>
+            <h4>Subcontractor billing reconciliation</h4>
+            <p>Invoices matched to signed work orders automatically. Mismatches flagged with a suggested answer before your bookkeeper sees them.</p>
+            <div class="it-num"><span>14h → &lt;40m / wk</span><b>$62k / yr</b></div>
+          </div>
+          <div>
+            <span class="it-lbl">→ Task 02</span>
+            <h4>Weekly project reporting</h4>
+            <p>Schedule, budget, and site photos pulled into a Friday report written in your PMs' voice. They review; they don't type.</p>
+            <div class="it-num"><span>6h → 15m / wk</span><b>$28k / yr</b></div>
+          </div>
+          <div>
+            <span class="it-lbl">→ Task 03</span>
+            <h4>RFQ intake &amp; bid setup</h4>
+            <p>Incoming RFQs parsed, takeoff spreadsheet pre-populated, trades suggested from past wins. Estimator edits, not starts from blank.</p>
+            <div class="it-num"><span>8h → 45m / bid</span><b>+14 bids / mo</b></div>
+          </div>
+          <div>
+            <span class="it-lbl">→ Task 04</span>
+            <h4>Jobsite photo &amp; daily log</h4>
+            <p>Photos captioned, daily logs drafted, owners copied — all from the site super's phone.</p>
+            <div class="it-num"><span>45m → auto / day</span><b>4h / day back</b></div>
+          </div>
+        </div>
+
+        <div class="ind-oneliner">
+          <span class="io-q">→ Tagline</span>
+          <span class="io-l">Win more bids. Stop paying people to do work <em>AI can do faster.</em></span>
+          <a href="Contact.html">Join waitlist →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Real Estate -->
+  <section class="ind" id="real-estate">
+    <div class="ind-wrap">
+      <div class="ind-meta">
+        <div class="im-tag"><span class="dot"></span><span>Sector 02</span></div>
+        <div class="im-n">02</div>
+        <span class="mono" style="color:var(--text-muted)">Real Estate · 2026</span>
+      </div>
+      <div class="ind-main">
+        <h2>Put the overhead back <em>in the business.</em></h2>
+        <p class="lede">Agents and TCs waste hours on follow-up, listing copy, and seller reports. We automate the work, your people earn more of their commission.</p>
+        <div class="ind-tasks">
+          <div>
+            <span class="it-lbl">→ Task 01</span>
+            <h4>Listing description drafting</h4>
+            <p>Agent-voice listing copy drafted from the MLS feed. Edit 15%, publish. Every listing ships the same day it's photographed.</p>
+            <div class="it-num"><span>3h → 20m / listing</span><b>$41k / yr</b></div>
+          </div>
+          <div>
+            <span class="it-lbl">→ Task 02</span>
+            <h4>Lead follow-up sequences</h4>
+            <p>Personalized follow-ups sent on schedule. TC only handles escalations. No lead goes cold on day four.</p>
+            <div class="it-num"><span>22h → 3h / wk</span><b>+31% close</b></div>
+          </div>
+          <div>
+            <span class="it-lbl">→ Task 03</span>
+            <h4>Open-house seller report</h4>
+            <p>Sign-ins captured, feedback summarized, seller report sent before the agent leaves the property.</p>
+            <div class="it-num"><span>4h → 5m / OH</span><b>8h / wk back</b></div>
+          </div>
+          <div>
+            <span class="it-lbl">→ Task 04</span>
+            <h4>Transaction coordination</h4>
+            <p>Docs routed, deadlines tracked, buyer / lender nudged. Your TC handles 2× the deals without burning out.</p>
+            <div class="it-num"><span>12h → 3h / deal</span><b>2× capacity</b></div>
+          </div>
+        </div>
+        <div class="ind-oneliner">
+          <span class="io-q">→ Tagline</span>
+          <span class="io-l">Stop paying your team for follow-up and reporting. <em>Put that money back in the business.</em></span>
+          <a href="Contact.html">Join waitlist →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Legal -->
+  <section class="ind" id="legal">
+    <div class="ind-wrap">
+      <div class="ind-meta">
+        <div class="im-tag"><span class="dot"></span><span>Sector 03</span></div>
+        <div class="im-n">03</div>
+        <span class="mono" style="color:var(--text-muted)">Legal · 2026</span>
+      </div>
+      <div class="ind-main">
+        <h2>Every hour is billable.<br>Ours or <em>theirs.</em></h2>
+        <p class="lede">Intake, billing narratives, first-pass document review — the work a partner shouldn't see. We replace it so your associates do more of what pays.</p>
+        <div class="ind-tasks">
+          <div>
+            <span class="it-lbl">→ Task 01</span>
+            <h4>Client intake &amp; conflict check</h4>
+            <p>Intake routed, conflict check run across your three systems, matter pre-populated. Paralegal approves.</p>
+            <div class="it-num"><span>90m → 6m / client</span><b>$54k / yr</b></div>
+          </div>
+          <div>
+            <span class="it-lbl">→ Task 02</span>
+            <h4>Billing narrative cleanup</h4>
+            <p>Associates' terse time entries rewritten to firm tone and client expectations before invoices go out.</p>
+            <div class="it-num"><span>18h → 2h / mo</span><b>$22k / yr</b></div>
+          </div>
+          <div>
+            <span class="it-lbl">→ Task 03</span>
+            <h4>Document review &amp; summary</h4>
+            <p>Deposition transcripts and contracts summarized with key quotes and flagged clauses. Attorney confirms.</p>
+            <div class="it-num"><span>12h → 2h / matter</span><b>10h / matter</b></div>
+          </div>
+          <div>
+            <span class="it-lbl">→ Task 04</span>
+            <h4>Discovery document routing</h4>
+            <p>Incoming discovery indexed, tagged, and routed to the right associate with a priority score.</p>
+            <div class="it-num"><span>8h → auto / batch</span><b>Sundays back</b></div>
+          </div>
+        </div>
+        <div class="ind-oneliner">
+          <span class="io-q">→ Tagline</span>
+          <span class="io-l">Every hour your staff spends on intake and billing is an hour <em>you're paying for.</em></span>
+          <a href="Contact.html">Join waitlist →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Financial -->
+  <section class="ind" id="financial">
+    <div class="ind-wrap">
+      <div class="ind-meta">
+        <div class="im-tag"><span class="dot"></span><span>Sector 04</span></div>
+        <div class="im-n">04</div>
+        <span class="mono" style="color:var(--text-muted)">Financial Advisors · 2026</span>
+      </div>
+      <div class="ind-main">
+        <h2>Grow without<br><em>adding headcount.</em></h2>
+        <p class="lede">Client onboarding, quarterly letters, meeting prep — the work ops teams do that your clients never see. We automate it so advisors serve more clients per FTE.</p>
+        <div class="ind-tasks">
+          <div>
+            <span class="it-lbl">→ Task 01</span>
+            <h4>Client onboarding &amp; KYC</h4>
+            <p>Documents collected on a portal, extracted, posted to CRM and custodian. First meeting booked automatically.</p>
+            <div class="it-num"><span>6h → 30m / client</span><b>$47k / yr</b></div>
+          </div>
+          <div>
+            <span class="it-lbl">→ Task 02</span>
+            <h4>Quarterly performance reports</h4>
+            <p>Reports pulled from your data sources, personalized notes drafted in the advisor's voice, sent on schedule.</p>
+            <div class="it-num"><span>60h → 6h / qtr</span><b>$35k / yr</b></div>
+          </div>
+          <div>
+            <span class="it-lbl">→ Task 03</span>
+            <h4>Meeting prep briefs</h4>
+            <p>Every call walks in with a one-page brief: portfolio drift, life events, last touchpoint. Auto-refreshed.</p>
+            <div class="it-num"><span>20m → auto / call</span><b>+2 mtgs / day</b></div>
+          </div>
+          <div>
+            <span class="it-lbl">→ Task 04</span>
+            <h4>Compliance reporting</h4>
+            <p>Trade blotters, marketing review, and ADV updates drafted and routed for sign-off. Nothing slips.</p>
+            <div class="it-num"><span>10h → 1h / wk</span><b>9h / wk back</b></div>
+          </div>
+        </div>
+        <div class="ind-oneliner">
+          <span class="io-q">→ Tagline</span>
+          <span class="io-l">Reduce overhead on onboarding, reporting, and prep — <em>without adding headcount.</em></span>
+          <a href="Contact.html">Join waitlist →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div data-slot="footer"></div>
+</div>
+<script src="scripts/site.js?v=4"></script>
+</body>
+</html>

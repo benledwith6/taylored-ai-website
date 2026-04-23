@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Case Studies — Tailored AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/site.css?v=5">
+<link rel="stylesheet" href="styles/dark-override.css?v=1">
+<style>
+  .page-hero{background:var(--near-black);color:var(--soft-white);padding:80px 48px 72px;border-bottom:1px solid var(--rule-dark)}
+  .page-hero-inner{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end}
+  .page-hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(64px,8vw,124px);line-height:.95;letter-spacing:-.035em;color:var(--soft-white)}
+  .page-hero h1 em{font-style:normal;color:var(--mint)}
+  .page-hero p{font-size:18px;line-height:1.55;color:#a0a9a3;max-width:46ch;margin-top:20px}
+  .page-hero .eyebrow{color:#7c857f}
+  .page-hero .eyebrow .num,.page-hero .eyebrow::before{color:var(--mint)}
+
+  .cs-feat{padding:0;background:var(--off-white);border-bottom:1px solid var(--rule)}
+  .cs-feat-inner{max-width:1360px;margin:0 auto;padding:96px 48px;display:grid;grid-template-columns:1fr 1.2fr;gap:72px;align-items:start}
+  .cs-feat-left{position:sticky;top:96px;display:flex;flex-direction:column;gap:20px}
+  .cs-feat-left .cs-id{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--forest);display:flex;gap:10px;align-items:center}
+  .cs-feat-left .cs-id .dot{width:5px;height:5px;background:var(--forest);border-radius:50%}
+  .cs-feat-left h2{font-family:'Syne',sans-serif;font-weight:800;font-size:88px;letter-spacing:-.035em;line-height:.92;color:var(--near-black)}
+  .cs-feat-left h2 em{font-style:normal;color:var(--forest)}
+  .cs-feat-left .cs-sub{font-size:16px;color:var(--text-muted);line-height:1.55;max-width:36ch;margin-top:10px}
+  .cs-feat-left dl{display:grid;grid-template-columns:120px 1fr;gap:8px 16px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-top:24px;padding-top:24px;border-top:1px solid var(--rule)}
+  .cs-feat-left dt{color:var(--text-muted)}
+  .cs-feat-left dd{color:var(--near-black);font-weight:500}
+
+  .cs-feat-right{display:flex;flex-direction:column;gap:40px}
+  .cs-hero-num{
+    background:var(--pure-white);border:1px solid var(--rule);padding:56px 48px;
+    display:flex;flex-direction:column;gap:16px;position:relative;overflow:hidden;
+  }
+  .cs-hero-num::before{content:"";position:absolute;right:-80px;top:-80px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(13,92,58,.08),transparent 65%)}
+  .cs-hero-num .chn-lbl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-muted)}
+  .cs-hero-num .chn-big{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(88px,10vw,144px);letter-spacing:-.04em;line-height:.92;color:var(--forest);position:relative}
+  .cs-hero-num .chn-big .dollar{font-size:.5em;vertical-align:.5em;color:var(--near-black);margin-right:.08em;font-weight:500}
+  .cs-hero-num .chn-note{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);margin-top:10px}
+
+  .cs-chart{background:var(--pure-white);border:1px solid var(--rule);padding:40px}
+  .cs-chart .cc-head{display:flex;justify-content:space-between;margin-bottom:20px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted)}
+  .cs-chart .cc-head b{color:var(--forest);font-weight:500}
+  .cs-chart svg{width:100%;height:260px;display:block}
+  .cs-chart .cc-legend{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:20px;padding-top:16px;border-top:1px dashed var(--rule)}
+  .cs-chart .cc-legend div{display:flex;flex-direction:column;gap:4px}
+  .cs-chart .cc-legend .k{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted)}
+  .cs-chart .cc-legend .v{font-family:'Syne',sans-serif;font-weight:700;font-size:22px;color:var(--near-black);letter-spacing:-.01em}
+  .cs-chart .cc-legend .v.pos{color:var(--forest)}
+  .cs-chart .cc-legend .v.neg{color:#8a2a1e}
+
+  .cs-quote{background:var(--near-black);color:var(--soft-white);padding:44px 48px}
+  .cs-quote blockquote{font-family:'Syne',sans-serif;font-weight:600;font-size:28px;letter-spacing:-.015em;line-height:1.25;color:var(--soft-white)}
+  .cs-quote blockquote em{font-style:normal;color:var(--mint)}
+  .cs-quote .cq-byline{margin-top:20px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#7c857f;display:flex;gap:10px;align-items:center}
+
+  .cs-body{padding:120px 48px;background:var(--pure-white)}
+  .cs-body-wrap{max-width:1120px;margin:0 auto}
+  .cs-body-wrap h3{font-family:'Syne',sans-serif;font-weight:700;font-size:44px;letter-spacing:-.025em;line-height:1;color:var(--near-black);margin-top:48px;margin-bottom:20px;max-width:20ch}
+  .cs-body-wrap h3:first-child{margin-top:0}
+  .cs-body-wrap p{font-size:17px;line-height:1.7;color:var(--charcoal);margin-bottom:16px;max-width:62ch}
+  .cs-body-wrap .pullnum{
+    border-left:3px solid var(--forest);padding:12px 0 12px 24px;margin:32px 0;
+    font-family:'Syne',sans-serif;font-size:28px;font-weight:600;line-height:1.2;color:var(--near-black);
+  }
+  .cs-body-wrap .pullnum b{color:var(--forest);font-weight:700}
+
+  .cs-more{background:var(--off-white);padding:120px 48px;border-top:1px solid var(--rule)}
+  .cs-more-wrap{max-width:1360px;margin:0 auto}
+  .cs-cards{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--rule);border:1px solid var(--rule);margin-top:48px}
+  .cs-card{background:var(--pure-white);padding:40px;display:flex;flex-direction:column;gap:18px;min-height:320px;position:relative}
+  .cs-card .csc-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--forest);display:flex;gap:10px;align-items:center}
+  .cs-card .csc-tag .dot{width:5px;height:5px;background:var(--forest);border-radius:50%}
+  .cs-card h3{font-family:'Syne',sans-serif;font-weight:700;font-size:32px;letter-spacing:-.02em;line-height:1.05;color:var(--near-black);max-width:18ch}
+  .cs-card h3 em{font-style:normal;color:var(--forest)}
+  .cs-card p{font-size:14px;color:var(--text-muted);line-height:1.55;max-width:38ch}
+  .cs-card .csc-num{margin-top:auto;display:flex;justify-content:space-between;align-items:end;padding-top:20px;border-top:1px dashed var(--rule)}
+  .cs-card .csc-num .n{font-family:'Syne',sans-serif;font-weight:700;font-size:40px;letter-spacing:-.025em;color:var(--forest);line-height:1}
+  .cs-card .csc-num .k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted)}
+  .cs-card .csc-status{position:absolute;top:40px;right:40px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-muted);padding:4px 10px;border:1px solid var(--rule);border-radius:2px}
+
+  @media (max-width:1100px){
+    .page-hero-inner,.cs-feat-inner,.cs-cards{grid-template-columns:1fr}
+    .cs-feat-left{position:static}
+  }
+</style>
+</head>
+<body data-page="cases" class="nav-dark">
+<div class="site">
+  <div data-slot="nav"></div>
+
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div>
+        <span class="eyebrow"><span class="num">04</span> Case Studies</span>
+        <h1 style="margin-top:32px">The math,<br>not the <em>marketing.</em></h1>
+      </div>
+      <div>
+        <p>One real engagement, written up in detail. Three more condensed into cards below. Every number here is a number we pulled out of a client's books — not a projection.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured case -->
+  <section class="cs-feat">
+    <div class="cs-feat-inner">
+      <div class="cs-feat-left">
+        <div class="cs-id"><span class="dot"></span><span>Case 01 · Construction · 2025</span></div>
+        <h2>One year.<br>One <em>owner.</em><br>Half a million back.</h2>
+        <p class="cs-sub">A 38-person residential contractor in the Mountain West. Two automations built, one retainer paid. Twelve-month numbers.</p>
+        <dl>
+          <dt>Sector</dt><dd>Construction · residential</dd>
+          <dt>Headcount</dt><dd>38 total · 12 admin</dd>
+          <dt>Engagement</dt><dd>Jan — Dec 2025</dd>
+          <dt>Retainer</dt><dd>$13,500 / mo</dd>
+          <dt>Automations</dt><dd>Billing, reporting</dd>
+        </dl>
+      </div>
+
+      <div class="cs-feat-right">
+        <div class="cs-hero-num">
+          <span class="chn-lbl">→ Net saved · twelve months</span>
+          <span class="chn-big"><span class="dollar">$</span>503,310</span>
+          <span class="chn-note">After retainer · vs. 2024 baseline</span>
+        </div>
+
+        <div class="cs-chart">
+          <div class="cc-head">
+            <span>→ Monthly admin spend · 2024 vs 2025</span>
+            <span><b>Δ $503,310</b> · twelve months</span>
+          </div>
+          <svg viewBox="0 0 600 260" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="cs1" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="#0D5C3A" stop-opacity=".22"/>
+                <stop offset="100%" stop-color="#0D5C3A" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <!-- gridlines -->
+            <g stroke="#E2E8E2" stroke-dasharray="2 4">
+              <line x1="40" y1="40" x2="600" y2="40"/>
+              <line x1="40" y1="100" x2="600" y2="100"/>
+              <line x1="40" y1="160" x2="600" y2="160"/>
+              <line x1="40" y1="220" x2="600" y2="220"/>
+            </g>
+            <!-- y labels -->
+            <g font-family="JetBrains Mono" font-size="9" fill="#5A6360" letter-spacing="1">
+              <text x="4" y="44">$70k</text>
+              <text x="4" y="104">$55k</text>
+              <text x="4" y="164">$40k</text>
+              <text x="4" y="224">$25k</text>
+            </g>
+            <!-- 2024 baseline (red-ish) -->
+            <path d="M40,70 L86,68 L132,72 L178,66 L224,70 L270,74 L316,70 L362,68 L408,74 L454,70 L500,68 L546,72"
+                  fill="none" stroke="#ff8b7a" stroke-width="1.6" stroke-dasharray="4 4"/>
+            <!-- 2025 line (green) -->
+            <path d="M40,70 L86,78 L132,102 L178,126 L224,150 L270,168 L316,180 L362,186 L408,192 L454,196 L500,198 L546,200"
+                  fill="none" stroke="#0D5C3A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M40,70 L86,78 L132,102 L178,126 L224,150 L270,168 L316,180 L362,186 L408,192 L454,196 L500,198 L546,200 L546,240 L40,240 Z" fill="url(#cs1)"/>
+            <!-- start automation marker -->
+            <line x1="132" y1="20" x2="132" y2="240" stroke="#0D5C3A" stroke-width="1" stroke-dasharray="2 3" opacity=".6"/>
+            <text x="138" y="30" font-family="JetBrains Mono" font-size="9" fill="#0D5C3A" letter-spacing="1.5">→ AUTOMATION LIVE · MAR 2025</text>
+            <!-- month ticks -->
+            <g font-family="JetBrains Mono" font-size="9" fill="#5A6360" letter-spacing="1">
+              <text x="34" y="252">Jan</text>
+              <text x="126" y="252">Mar</text>
+              <text x="218" y="252">May</text>
+              <text x="310" y="252">Jul</text>
+              <text x="402" y="252">Sep</text>
+              <text x="494" y="252">Nov</text>
+            </g>
+          </svg>
+          <div class="cc-legend">
+            <div><span class="k">2024 baseline</span><span class="v neg">$68.4k / mo</span></div>
+            <div><span class="k">Dec 2025</span><span class="v pos">$26.5k / mo</span></div>
+            <div><span class="k">Retainer · ongoing</span><span class="v">$13.5k / mo</span></div>
+          </div>
+        </div>
+
+        <div class="cs-quote">
+          <blockquote>
+            "I stopped hiring for admin. <em>Same growth, half the back office,</em> and Monday mornings are quiet."
+          </blockquote>
+          <div class="cq-byline"><span>— Owner · residential contractor · 2025 reference client</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Body -->
+  <section class="cs-body">
+    <div class="cs-body-wrap">
+      <h3>What we found in the audit.</h3>
+      <p>Twelve admin staff. Three bookkeepers. Every Monday, the bookkeepers spent the morning reconciling last week's subcontractor invoices against signed work orders — pulling PDFs from email, keying line items into QuickBooks, chasing down mismatches. It was fourteen hours a week, per person, before anything interesting happened.</p>
+      <p>At the same time, project managers were writing Friday reports by hand, in Google Docs, for eighteen active jobs. Schedule pulled from one system, budget from another, site photos from a shared drive. Every PM lost six hours a week to report assembly — and the reports arrived Monday, not Friday.</p>
+      <div class="pullnum">We ranked those two tasks against the other six candidates and recommended billing first. <b>It was the fastest to live and the cleanest to measure.</b></div>
+
+      <h3>What we built.</h3>
+      <p>A subcontractor billing reconciler that sits between the shared inbox and QuickBooks. It matches each incoming invoice to its work order, codes line items, flags mismatches with a suggested answer, and hands the queue to one bookkeeper for review. Fourteen hours of Monday work became forty minutes. We kept one bookkeeper on the queue; the other two moved to pre-lien and collections — higher-value work the firm had been neglecting.</p>
+      <p>Six months in we added the second automation: the Friday PM report. Schedule and budget pulled from the active systems, site photos captioned from the super's phone, a report drafted in the firm's house voice, delivered by 5pm Friday. PMs now review it in fifteen minutes instead of writing it in six hours.</p>
+
+      <h3>What it looked like in the books.</h3>
+      <p>The 2024 baseline admin spend — fully loaded with benefits — was $68,400 per month. By December 2025, after both automations were live and stable, it was $26,500. Annual savings: $502,800. Add in fourteen more billable PM hours per week across six PMs and you get a recovery of roughly 4,020 hours back to the team. The retainer cost $162,000 for the year.</p>
+      <div class="pullnum">Net saved after the retainer: <b>$503,310</b>. Return on the retainer: <b>3.1×</b> in year one, and that compounds every year the automation runs.</div>
+
+      <h3>What happens next.</h3>
+      <p>For 2026 we're looking at a third automation around RFQ intake. The client has a forty-bid backlog every month and the estimator is the bottleneck. Same retainer. Same math.</p>
+    </div>
+  </section>
+
+  <!-- More cases -->
+  <section class="cs-more">
+    <div class="cs-more-wrap">
+      <span class="eyebrow"><span class="num">04.1</span> In progress</span>
+      <h2 style="font-size:56px;margin-top:28px;letter-spacing:-.028em;line-height:.98;max-width:20ch">More engagements,<br>less complete write-ups.</h2>
+      <p style="color:var(--text-muted);max-width:52ch;font-size:16px;line-height:1.55;margin-top:14px">Three more clients in the first three quarters of 2026. Full write-ups arrive as the twelve-month marks hit.</p>
+
+      <div class="cs-cards">
+        <div class="cs-card">
+          <span class="csc-status">Q2 2026 · live</span>
+          <div class="csc-tag"><span class="dot"></span><span>Case 02 · Real Estate</span></div>
+          <h3>Boutique brokerage<br>replaces <em>manual follow-up.</em></h3>
+          <p>22-agent Pacific Northwest brokerage. Lead follow-up sequences and open-house seller reports automated in month one. On pace for a 31% lift in close rate.</p>
+          <div class="csc-num"><span class="n">8.2×</span><span class="k">Retainer ROI · Q1</span></div>
+        </div>
+        <div class="cs-card">
+          <span class="csc-status">Q2 2026 · live</span>
+          <div class="csc-tag"><span class="dot"></span><span>Case 03 · Legal</span></div>
+          <h3>9-attorney firm<br>gives Sundays <em>back.</em></h3>
+          <p>Document review and intake / conflict check automated. Paralegal team reallocated to matter management. Full twelve-month numbers coming Q1 2027.</p>
+          <div class="csc-num"><span class="n">10h</span><span class="k">Per matter · back</span></div>
+        </div>
+        <div class="cs-card">
+          <span class="csc-status">Q3 2026 · onboarding</span>
+          <div class="csc-tag"><span class="dot"></span><span>Case 04 · Financial Advisors</span></div>
+          <h3>140-client RIA<br>scales <em>without hiring.</em></h3>
+          <p>Quarterly reports and meeting prep briefs are the first two. KYC onboarding is queued for week twenty.</p>
+          <div class="csc-num"><span class="n">+2</span><span class="k">Meetings / advisor / day</span></div>
+        </div>
+        <div class="cs-card">
+          <span class="csc-status">Waitlist · Q4 2026</span>
+          <div class="csc-tag"><span class="dot"></span><span>Case 05 · Your firm</span></div>
+          <h3>Be the next<br><em>write-up.</em></h3>
+          <p>We onboard four clients per quarter. The next slot opens in Q4 — construction, real estate, legal, or financial advisors.</p>
+          <div class="csc-num"><span class="n" style="font-size:28px"><a href="Contact.html" style="color:var(--forest)">Join waitlist →</a></span><span class="k">One retainer · no surprises</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div data-slot="footer"></div>
+</div>
+<script src="scripts/site.js?v=4"></script>
+</body>
+</html>

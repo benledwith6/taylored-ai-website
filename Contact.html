@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Join the waitlist — Tailored AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/site.css?v=5">
+<link rel="stylesheet" href="styles/dark-override.css?v=1">
+<style>
+  /* === Page === */
+  .contact-page{background:var(--near-black);color:var(--soft-white);min-height:100vh}
+  .contact-page .eyebrow{color:#7c857f}
+  .contact-page .eyebrow .num,.contact-page .eyebrow::before{color:var(--mint)}
+
+  .ct-hero{
+    padding:80px 48px 0;position:relative;overflow:hidden;
+  }
+  .ct-hero::before{
+    content:"";position:absolute;left:50%;top:-200px;width:1100px;height:1100px;transform:translateX(-50%);
+    background:radial-gradient(circle,rgba(0,196,113,.08),transparent 60%);pointer-events:none;
+  }
+  .ct-hero-inner{max-width:1360px;margin:0 auto;position:relative}
+  .ct-hero-inner .rail{
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#7c857f;
+    margin-bottom:48px;
+  }
+  .ct-hero-inner .rail .dot{width:5px;height:5px;background:var(--mint);border-radius:50%;display:inline-block;margin-right:8px;animation:pulse 2s infinite}
+  .ct-hero-inner h1{
+    font-family:'Syne',sans-serif;font-weight:800;
+    font-size:clamp(72px,10vw,172px);line-height:.9;letter-spacing:-.04em;
+    max-width:14ch;
+  }
+  .ct-hero-inner h1 em{font-style:normal;color:var(--mint)}
+  .ct-hero-inner .sub{
+    display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:48px;padding-bottom:80px;
+    border-bottom:1px solid var(--rule-dark);
+  }
+  .ct-hero-inner .sub p{font-size:18px;line-height:1.55;color:#a0a9a3;max-width:48ch}
+  .ct-hero-inner .sub .numbox{
+    display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:1px solid var(--rule-dark);background:#0f1210;
+  }
+  .ct-hero-inner .sub .numbox > div{padding:24px 22px;border-right:1px solid var(--rule-dark);display:flex;flex-direction:column;gap:8px}
+  .ct-hero-inner .sub .numbox > div:last-child{border-right:0}
+  .ct-hero-inner .sub .numbox .n{font-family:'Syne',sans-serif;font-weight:700;font-size:36px;letter-spacing:-.02em;color:var(--mint);line-height:1}
+  .ct-hero-inner .sub .numbox .k{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#7c857f}
+
+  /* === Main layout === */
+  .ct-main{
+    max-width:1360px;margin:0 auto;padding:80px 48px 120px;
+    display:grid;grid-template-columns:1.2fr 1fr;gap:80px;align-items:start;position:relative;
+  }
+
+  /* === Form === */
+  .ct-form{
+    background:#0f1210;border:1px solid var(--rule-dark);padding:48px 44px;
+    display:flex;flex-direction:column;gap:28px;
+  }
+  .ct-form .form-head{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:24px;border-bottom:1px solid var(--rule-dark)}
+  .ct-form .form-head h2{font-family:'Syne',sans-serif;font-weight:700;font-size:32px;letter-spacing:-.02em;color:var(--soft-white)}
+  .ct-form .form-head .code{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#7c857f}
+
+  .field{display:flex;flex-direction:column;gap:10px}
+  .field label{
+    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#7c857f;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .field label .req{color:var(--mint)}
+  .field input,.field select,.field textarea{
+    background:transparent;border:0;border-bottom:1px solid var(--rule-dark);
+    padding:14px 0 12px;color:var(--soft-white);font-size:17px;font-family:'DM Sans',sans-serif;
+    transition:border-color .2s;
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-bottom-color:var(--mint)}
+  .field input::placeholder,.field textarea::placeholder{color:#4a5350}
+  .field select{appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,#7c857f 50%),linear-gradient(135deg,#7c857f 50%,transparent 50%);background-position:calc(100% - 14px) 50%,calc(100% - 9px) 50%;background-size:5px 5px;background-repeat:no-repeat;padding-right:28px;cursor:pointer}
+  .field select option{background:#0f1210;color:var(--soft-white)}
+  .field textarea{min-height:100px;resize:vertical;border:1px solid var(--rule-dark);padding:14px 16px}
+
+  .fieldrow{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+
+  .chipgroup{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+  .chipgroup button{
+    background:transparent;border:1px solid var(--rule-dark);color:#a0a9a3;
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    padding:10px 14px;border-radius:2px;transition:all .2s;
+  }
+  .chipgroup button:hover{border-color:#4a5350;color:var(--soft-white)}
+  .chipgroup button.on{background:var(--mint);color:var(--near-black);border-color:var(--mint)}
+
+  .form-foot{
+    display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:24px;border-top:1px solid var(--rule-dark);gap:24px;flex-wrap:wrap;
+  }
+  .form-foot .fine{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#7c857f;max-width:30ch;line-height:1.6}
+  .btn-submit{
+    background:var(--mint);color:var(--near-black);
+    padding:18px 28px;
+    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;
+    display:inline-flex;align-items:center;gap:14px;border-radius:2px;transition:all .2s;
+  }
+  .btn-submit:hover{background:var(--soft-white);transform:translateY(-1px)}
+  .btn-submit .arrow{font-family:'Syne',sans-serif;font-size:16px}
+  .btn-submit[disabled]{opacity:.45;cursor:not-allowed;transform:none}
+
+  /* Success state */
+  .success{
+    display:none;flex-direction:column;gap:28px;min-height:520px;justify-content:center;text-align:left;
+  }
+  .success.on{display:flex}
+  .ct-form.sent .form-live{display:none}
+  .success .check{
+    width:56px;height:56px;border-radius:50%;background:var(--mint);color:var(--near-black);
+    display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:32px;
+  }
+  .success h2{font-family:'Syne',sans-serif;font-weight:700;font-size:48px;letter-spacing:-.025em;line-height:1;color:var(--soft-white);max-width:16ch}
+  .success h2 em{font-style:normal;color:var(--mint)}
+  .success p{font-size:16px;line-height:1.6;color:#a0a9a3;max-width:46ch}
+  .success .recap{
+    display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--rule-dark);margin-top:16px;
+  }
+  .success .recap > div{padding:18px 22px;border-right:1px solid var(--rule-dark)}
+  .success .recap > div:last-child{border-right:0}
+  .success .recap .k{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:#7c857f}
+  .success .recap .v{font-family:'Syne',sans-serif;font-weight:600;font-size:20px;color:var(--soft-white);margin-top:6px;letter-spacing:-.01em}
+
+  /* === Aside === */
+  .ct-aside{display:flex;flex-direction:column;gap:40px;position:sticky;top:96px}
+  .ct-aside .ca-block{
+    border:1px solid var(--rule-dark);padding:36px 32px;background:#0a0b0a;
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .ct-aside .ca-block .ca-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--mint);display:flex;align-items:center;gap:10px}
+  .ct-aside .ca-block .ca-tag .dot{width:5px;height:5px;background:var(--mint);border-radius:50%}
+  .ct-aside .ca-block h3{font-family:'Syne',sans-serif;font-weight:700;font-size:28px;letter-spacing:-.02em;color:var(--soft-white);line-height:1.05;max-width:18ch}
+  .ct-aside .ca-block p{font-size:15px;color:#a0a9a3;line-height:1.6;max-width:38ch}
+
+  .ca-contact{display:grid;grid-template-columns:120px 1fr;gap:8px 16px;margin-top:4px;padding-top:16px;border-top:1px dashed var(--rule-dark)}
+  .ca-contact dt{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#7c857f}
+  .ca-contact dd a{font-size:15px;color:var(--soft-white);transition:color .2s}
+  .ca-contact dd a:hover{color:var(--mint)}
+
+  .ca-steps{display:flex;flex-direction:column;gap:18px}
+  .ca-steps .cs-item{display:grid;grid-template-columns:36px 1fr;gap:14px;padding-bottom:18px;border-bottom:1px dashed var(--rule-dark)}
+  .ca-steps .cs-item:last-child{border-bottom:0;padding-bottom:0}
+  .ca-steps .cs-n{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--mint)}
+  .ca-steps .cs-txt h5{font-family:'Syne',sans-serif;font-weight:600;font-size:17px;color:var(--soft-white);letter-spacing:-.01em;margin-bottom:4px}
+  .ca-steps .cs-txt p{font-size:13px;color:#a0a9a3;line-height:1.55;max-width:34ch;margin:0}
+
+  /* Footer reset for dark page */
+  .contact-page .footer{margin-top:0;border-top:1px solid var(--rule-dark)}
+
+  @media (max-width:1100px){
+    .ct-main{grid-template-columns:1fr;gap:48px;padding:48px 24px 80px}
+    .ct-hero{padding:48px 24px 0}
+    .ct-hero-inner .sub{grid-template-columns:1fr;gap:32px;padding-bottom:48px}
+    .fieldrow{grid-template-columns:1fr}
+    .ct-aside{position:static}
+  }
+</style>
+</head>
+<body data-page="contact" class="contact-page nav-dark">
+<div class="site">
+  <div data-slot="nav"></div>
+
+  <section class="ct-hero">
+    <div class="ct-hero-inner">
+      <div class="rail">
+        <span><span class="dot"></span>Waitlist · Q2 2026</span>
+        <span>Four clients / quarter · Construction · Real Estate · Legal · Financial Advisors</span>
+      </div>
+      <h1>Be helped<br><em>next.</em></h1>
+      <div class="sub">
+        <div>
+          <p>Tell us about your business and the work that's eating your team's hours. We reply within two business days with a short note — and a slot on the calendar if it looks like a fit.</p>
+          <p style="margin-top:14px">No demos. No sales deck. Just the audit memo, if we get that far.</p>
+        </div>
+        <div class="numbox">
+          <div>
+            <span class="n">04</span>
+            <span class="k">Clients onboarded<br>per quarter</span>
+          </div>
+          <div>
+            <span class="n">2d</span>
+            <span class="k">Reply time<br>from a founder</span>
+          </div>
+          <div>
+            <span class="n">~4w</span>
+            <span class="k">From signature<br>to live automation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ct-main">
+    <!-- FORM -->
+    <form class="ct-form" id="waitlistForm" novalidate>
+      <div class="form-head">
+        <h2>Waitlist application.</h2>
+        <span class="code">Form 01 · v2026</span>
+      </div>
+
+      <div class="form-live">
+        <div class="fieldrow">
+          <div class="field">
+            <label><span>01 · Your name</span><span class="req">*</span></label>
+            <input type="text" name="name" placeholder="Jane Doe" required>
+          </div>
+          <div class="field">
+            <label><span>02 · Role</span></label>
+            <input type="text" name="role" placeholder="Owner / Operator / CFO">
+          </div>
+        </div>
+
+        <div class="fieldrow">
+          <div class="field">
+            <label><span>03 · Work email</span><span class="req">*</span></label>
+            <input type="email" name="email" placeholder="jane@yourfirm.com" required>
+          </div>
+          <div class="field">
+            <label><span>04 · Company</span><span class="req">*</span></label>
+            <input type="text" name="company" placeholder="Your firm" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label><span>05 · Industry</span><span class="req">*</span></label>
+          <div class="chipgroup" data-name="industry">
+            <button type="button" data-v="construction">Construction</button>
+            <button type="button" data-v="real-estate">Real Estate</button>
+            <button type="button" data-v="legal">Legal</button>
+            <button type="button" data-v="financial">Financial Advisors</button>
+            <button type="button" data-v="other">Other</button>
+          </div>
+        </div>
+
+        <div class="fieldrow">
+          <div class="field">
+            <label><span>06 · Admin headcount</span></label>
+            <select name="headcount">
+              <option value="">Choose a range…</option>
+              <option>1–5 people</option>
+              <option>6–15 people</option>
+              <option>16–40 people</option>
+              <option>40+ people</option>
+            </select>
+          </div>
+          <div class="field">
+            <label><span>07 · Ready to start</span></label>
+            <select name="timing">
+              <option value="">Choose a timeline…</option>
+              <option>This quarter (Q2 2026)</option>
+              <option>Next quarter (Q3 2026)</option>
+              <option>Later in 2026</option>
+              <option>Just exploring</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label><span>08 · Where is your team losing the most hours?</span></label>
+          <textarea name="pain" placeholder="e.g. 'Bookkeepers spend 14h/wk reconciling subcontractor invoices against work orders — paper trail starts in email.'"></textarea>
+        </div>
+
+        <div class="form-foot">
+          <div class="fine">
+            → We'll only ever email you about your application. No newsletter. No list.
+          </div>
+          <button class="btn-submit" type="submit" id="submitBtn">
+            Submit application
+            <span class="arrow">→</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Success state -->
+      <div class="success" id="successPane">
+        <div class="check">✓</div>
+        <h2>You're on the list<em>.</em></h2>
+        <p>We'll review your note within two business days. If it looks like a fit, Ben will reach out directly to book the first call. If not, we'll still reply — and where possible, point you somewhere good.</p>
+        <div class="recap">
+          <div><div class="k">→ Application</div><div class="v" id="rcRef">TA-0000</div></div>
+          <div><div class="k">→ Expected reply</div><div class="v" id="rcDate">within 2 business days</div></div>
+        </div>
+        <p style="margin-top:8px">Meanwhile, if you have something urgent — <a href="mailto:ben@tailoredhq.com" style="color:var(--mint)">email Ben</a> or call <a href="tel:+14087101394" style="color:var(--mint)">(408) 710-1394</a>.</p>
+      </div>
+    </form>
+
+    <!-- ASIDE -->
+    <aside class="ct-aside">
+      <div class="ca-block">
+        <div class="ca-tag"><span class="dot"></span><span>Talk to us directly</span></div>
+        <h3>You can also just email Ben.</h3>
+        <p>If forms aren't your thing, a one-line email is perfectly fine. He reads every one.</p>
+        <dl class="ca-contact">
+          <dt>Email</dt><dd><a href="mailto:ben@tailoredhq.com">ben@tailoredhq.com</a></dd>
+          <dt>Direct</dt><dd><a href="tel:+14087101394">(408) 710-1394</a></dd>
+          <dt>Site</dt><dd><a href="https://tailoredhq.com">tailoredhq.com</a></dd>
+          <dt>Hours</dt><dd>Mon–Fri · 8am–6pm MT</dd>
+        </dl>
+      </div>
+
+      <div class="ca-block">
+        <div class="ca-tag"><span class="dot"></span><span>What happens next</span></div>
+        <h3>Four short steps<br>from here.</h3>
+        <div class="ca-steps">
+          <div class="cs-item">
+            <span class="cs-n">01</span>
+            <div class="cs-txt"><h5>You submit this form.</h5><p>Takes about 90 seconds. No demo booking, no sales sequence.</p></div>
+          </div>
+          <div class="cs-item">
+            <span class="cs-n">02</span>
+            <div class="cs-txt"><h5>Ben or Evan reads it.</h5><p>Within two business days. Founders only — nobody else sees applications.</p></div>
+          </div>
+          <div class="cs-item">
+            <span class="cs-n">03</span>
+            <div class="cs-txt"><h5>30-minute call.</h5><p>We talk about the work, not our product. We'll tell you if it's not a fit.</p></div>
+          </div>
+          <div class="cs-item">
+            <span class="cs-n">04</span>
+            <div class="cs-txt"><h5>Audit week.</h5><p>If we both want to move forward, we're on-site in the first month we have capacity.</p></div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <div data-slot="footer"></div>
+</div>
+
+<script>
+  // Chip groups (single-select)
+  document.querySelectorAll('.chipgroup').forEach(group=>{
+    group.addEventListener('click',(e)=>{
+      const b = e.target.closest('button[data-v]');
+      if(!b) return;
+      group.querySelectorAll('button').forEach(x=>x.classList.remove('on'));
+      b.classList.add('on');
+      group.dataset.value = b.dataset.v;
+    });
+  });
+
+  // Submission → success state (no real backend)
+  const form = document.getElementById('waitlistForm');
+  const btn = document.getElementById('submitBtn');
+  form.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    // Minimal validation
+    const email = form.querySelector('[name=email]').value.trim();
+    const name = form.querySelector('[name=name]').value.trim();
+    const company = form.querySelector('[name=company]').value.trim();
+    if(!email || !name || !company){
+      btn.animate([{transform:'translateX(0)'},{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}], {duration:280});
+      return;
+    }
+    btn.disabled = true; btn.textContent = 'Submitting…';
+    setTimeout(()=>{
+      const ref = 'TA-' + String(Math.floor(1000 + Math.random()*9000));
+      document.getElementById('rcRef').textContent = ref;
+      const d = new Date(); d.setDate(d.getDate()+2);
+      document.getElementById('rcDate').textContent = 'by ' + d.toLocaleDateString('en-US',{weekday:'short', month:'short', day:'numeric'});
+      form.classList.add('sent');
+      document.getElementById('successPane').classList.add('on');
+      window.scrollTo({top: form.getBoundingClientRect().top + window.scrollY - 80, behavior:'smooth'});
+    }, 700);
+  });
+</script>
+<script src="scripts/site.js?v=4"></script>
+</body>
+</html>

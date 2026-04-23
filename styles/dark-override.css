@@ -1,0 +1,114 @@
+
+/* === FULL-DARK MODE — overrides for all pages === */
+:root{
+  --near-black:#0A0B0A;
+  --charcoal:#E6EAE6;
+  --off-white:#0A0B0A;
+  --pure-white:#0F1210;
+  --soft-white:#F0F4F0;
+  --gray-green:#1a1d1a;
+  --text-muted:#a0a9a3;
+  --rule:#242724;
+  --rule-dark:#242724;
+}
+html,body{background:#0A0B0A;color:#E6EAE6}
+/* Nav always dark */
+.nav{background:rgba(10,11,10,.82)!important;border-bottom:1px solid #242724!important;color:#F0F4F0}
+.nav-brand img{filter:invert(1)}
+.nav-links a{color:#7c857f}
+.nav-links a:hover,.nav-links a.active{color:#F0F4F0}
+.nav-cta{background:#F0F4F0;color:#0A0B0A}
+.nav-cta:hover{background:#00C471;color:#0A0B0A}
+/* Section backgrounds — any white/off-white surface becomes a dark layered panel */
+section{color:#E6EAE6}
+.proof,.how,.auto,.partner,.pricing,.faq,.timeline,.timeline2,.manifesto,.values,.cs-body,.cs-more,.cs-feat,.page-hero,.ind{
+  background:#0A0B0A!important;color:#E6EAE6!important;border-color:#242724!important;
+}
+/* Alternating section hints via subtle dark panels */
+.how{background:#0f1210!important}
+.faq,.values,.cs-more,.manifesto,.timeline2{background:#0f1210!important}
+.partner,.auto{background:#0A0B0A!important}
+.ind:nth-of-type(odd){background:#0f1210!important}
+.ind:nth-of-type(even){background:#0A0B0A!important}
+/* Cards / tiles that used pure-white backgrounds */
+.tickline,.tickline > div,.how-step,.auto-detail,.ind-tasks,.ind-tasks > div,
+.pr-card,.v-cell,.cs-card,.cs-chart,.cs-hero-num,
+.ca-block,.roi-col,.roi-col.out,.founder,.h-chart,.tl-aside,
+.auto-detail .ad-compare > div{
+  background:#121613!important;color:#E6EAE6!important;border-color:#242724!important;
+}
+.auto-list button{background:#0A0B0A!important;color:#E6EAE6!important;border-color:#242724!important}
+.auto-list button:hover{background:#0f1210!important}
+.auto-list .al-name{color:#F0F4F0!important}
+.auto-list .al-num,.auto-list .al-ind{color:#a0a9a3!important}
+/* Headings and large type */
+h1,h2,h3,h4,h5,.display{color:#F0F4F0!important}
+.proof-hero-num,.proof-num{color:#F0F4F0!important}
+/* em accents: keep forest readable by swapping to mint on dark */
+em{color:#00C471!important}
+.hero[data-hero-ground="light"] h1 em,
+.page-hero h1 em,
+.cs-feat-left h2 em,
+.cs-card h3 em,
+.ind-main h2 em,
+.tl-aside .tl-out b,
+.faq summary .plus,
+.ind-meta .im-tag,
+.proof-tag,
+.ad-tag,
+.cs-feat-left .cs-id,
+.cs-chart .cc-head b,
+.tl-meta .tl-week,
+.tl-aside li::before,
+.tl-aside .tl-out b,
+.v-cell .vc-n,
+.ca-contact dt,
+.founder .fp-role,
+.eyebrow .num{color:#00C471!important}
+.eyebrow::before{color:#00C471!important}
+.eyebrow{color:#a0a9a3!important}
+/* Rules */
+hr.rule,.sec-head{border-color:#242724!important}
+/* Muted text */
+p,.proof-lbl,.tl-aside li,.tl-aside h5,.ind-main .lede,.manifesto p,
+.v-cell p,.cs-card p,.founder p,.ca-aside p,.cs-body-wrap p,.success p,
+.ct-hero-inner .sub p,.ind-tasks p,.how-step p,.auto-detail .ad-compare .adc-text,
+.pr-card p,.faq details p,.t2-item p{color:#c7cdc8!important}
+.proof-lbl,.it-lbl,.mono,.tl-label,.sec-head p,.fine,.hs-weeks,.adc-lbl,.ad-meta,
+.roi-note,.hc-k,.rb-lbl,.pr-tag,.tl-aside .tl-out,.cs-body-wrap .pullnum{color:#a0a9a3!important}
+/* Inputs and forms — already dark in contact; leave alone */
+/* Light hero fallback should still feel dark */
+.hero[data-hero-ground="light"]{background:#0A0B0A!important;color:#E6EAE6!important}
+.hero[data-hero-ground="light"] .h-chart{background:#121613!important;border-color:#242724!important}
+.hero[data-hero-ground="light"] h1{color:#F0F4F0!important}
+.hero[data-hero-ground="light"] h1 em{color:#00C471!important}
+.hero[data-hero-ground="light"] .btn-primary{background:#00C471;color:#0A0B0A}
+.hero[data-hero-ground="light"] .btn-ghost{color:#F0F4F0;border-color:#242724}
+/* Pricing already dark — keep */
+/* Industry oneliner already dark — keep */
+/* How-step hover */
+.how-step:hover{background:#1a1d1a!important}
+/* Tweaks panel — adapt to dark */
+.tweaks{background:#121613;border-color:#242724;color:#E6EAE6}
+.tweaks h6{color:#a0a9a3}
+.tweak-row label{color:#F0F4F0}
+.tweak-opts button{background:#0A0B0A;color:#a0a9a3;border-color:#242724}
+.tweak-opts button.on{background:#00C471;color:#0A0B0A;border-color:#00C471}
+/* Footer already dark — leave alone */
+.footer{margin-top:0!important}
+/* Chart grids */
+.cs-chart svg g[stroke="#E2E8E2"] line{stroke:#242724!important}
+/* Before/after compare — tint */
+.auto-detail .ad-compare .before{background:#141110!important}
+.auto-detail .ad-compare .after{background:#0f1a14!important}
+.auto-detail .ad-compare .adc-num,.cs-card .csc-num .n,.tickline .tl-num{color:#F0F4F0!important}
+.cs-card .csc-num .n{color:#00C471!important}
+/* Field borders on forms */
+.field input,.field select,.field textarea{border-color:#242724}
+/* Misc accent overrides — swap forest green for mint for visibility */
+.proof-hero-num em{color:#00C471!important}
+.btn-primary{background:#F0F4F0;color:#0A0B0A}
+.btn-primary:hover{background:#00C471;color:#0A0B0A}
+.btn-ghost{color:#F0F4F0;border-color:#242724}
+.btn-ghost:hover{border-color:#F0F4F0}
+/* Footer brand: section is dark already */

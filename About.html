@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About — Tailored AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/site.css?v=5">
+<link rel="stylesheet" href="styles/dark-override.css?v=1">
+<style>
+  .page-hero{background:var(--off-white);padding:80px 48px 60px;border-bottom:1px solid var(--rule)}
+  .page-hero-inner{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end}
+  .page-hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(64px,8vw,124px);line-height:.95;letter-spacing:-.035em}
+  .page-hero h1 em{font-style:normal;color:var(--forest)}
+  .page-hero p{font-size:18px;line-height:1.55;color:var(--text-muted);max-width:46ch;margin-top:20px}
+
+  .manifesto{padding:120px 48px;background:var(--pure-white);border-bottom:1px solid var(--rule)}
+  .manifesto-wrap{max-width:1120px;margin:0 auto}
+  .manifesto h2{font-family:'Syne',sans-serif;font-weight:700;font-size:72px;line-height:.98;letter-spacing:-.03em;max-width:16ch;color:var(--near-black);margin-bottom:48px}
+  .manifesto h2 em{font-style:normal;color:var(--forest)}
+  .manifesto p{font-size:20px;line-height:1.65;color:var(--charcoal);margin-bottom:22px;max-width:60ch}
+  .manifesto p em{font-style:normal;color:var(--forest);font-weight:500}
+
+  .founders{padding:120px 48px;background:var(--near-black);color:var(--soft-white)}
+  .founders-wrap{max-width:1360px;margin:0 auto}
+  .founders h2{font-family:'Syne',sans-serif;font-weight:800;font-size:88px;letter-spacing:-.035em;line-height:.95;color:var(--soft-white);margin-bottom:56px;max-width:14ch}
+  .founders h2 em{font-style:normal;color:var(--mint)}
+  .founders-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--rule-dark);border:1px solid var(--rule-dark)}
+  .founder{background:#0f1210;padding:56px 48px;display:flex;flex-direction:column;gap:24px;min-height:520px}
+  .founder .fp-portrait{
+    width:160px;height:200px;background:linear-gradient(140deg,#1a1d1a,#0a0b0a);
+    border:1px solid var(--rule-dark);position:relative;overflow:hidden;
+  }
+  .founder .fp-portrait::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(circle at 50% 38%, rgba(0,196,113,.18), transparent 60%),
+      repeating-linear-gradient(45deg, rgba(255,255,255,.02) 0 4px, transparent 4px 10px);
+  }
+  .founder .fp-portrait::after{
+    content:attr(data-initials);position:absolute;left:50%;top:55%;transform:translate(-50%,-50%);
+    font-family:'Syne',sans-serif;font-weight:800;font-size:72px;color:var(--soft-white);letter-spacing:-.03em;opacity:.9;
+  }
+  .founder .fp-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#7c857f;display:flex;gap:10px;align-items:center}
+  .founder .fp-tag .dot{width:5px;height:5px;background:var(--mint);border-radius:50%}
+  .founder h3{font-family:'Syne',sans-serif;font-weight:700;font-size:40px;letter-spacing:-.025em;line-height:1;color:var(--soft-white)}
+  .founder .fp-role{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mint)}
+  .founder p{font-size:15px;color:#c7cdc8;line-height:1.65;max-width:40ch}
+  .founder dl{display:grid;grid-template-columns:100px 1fr;gap:6px 16px;margin-top:auto;padding-top:24px;border-top:1px dashed #2a2d2a;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+  .founder dt{color:#7c857f}
+  .founder dd{color:var(--soft-white)}
+
+  .values{padding:120px 48px;background:var(--off-white)}
+  .values-wrap{max-width:1360px;margin:0 auto}
+  .values-head{display:grid;grid-template-columns:220px 1fr;gap:56px;align-items:end;margin-bottom:56px}
+  .values-head h2{font-family:'Syne',sans-serif;font-weight:700;font-size:64px;letter-spacing:-.028em;line-height:.98;max-width:14ch}
+  .values-head h2 em{font-style:normal;color:var(--forest)}
+  .v-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+  .v-cell{padding:40px 36px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);background:var(--pure-white);display:flex;flex-direction:column;gap:14px;min-height:260px}
+  .v-cell .vc-n{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:var(--forest)}
+  .v-cell h4{font-family:'Syne',sans-serif;font-weight:700;font-size:28px;letter-spacing:-.02em;line-height:1.05;color:var(--near-black);margin-top:8px;max-width:20ch}
+  .v-cell p{font-size:15px;line-height:1.6;color:var(--text-muted);max-width:40ch}
+
+  .timeline2{padding:120px 48px;background:var(--pure-white);border-top:1px solid var(--rule)}
+  .t2-wrap{max-width:1120px;margin:0 auto}
+  .t2-list{display:flex;flex-direction:column;border-top:1px solid var(--rule)}
+  .t2-item{display:grid;grid-template-columns:160px 1fr;gap:48px;padding:32px 0;border-bottom:1px solid var(--rule);align-items:baseline}
+  .t2-item .t2-d{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--forest)}
+  .t2-item h4{font-family:'Syne',sans-serif;font-weight:600;font-size:26px;letter-spacing:-.015em;color:var(--near-black);margin-bottom:8px}
+  .t2-item p{font-size:15px;color:var(--text-muted);line-height:1.6;max-width:60ch}
+
+  @media (max-width:1100px){
+    .page-hero-inner,.founders-grid,.v-grid,.values-head,.t2-item{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body data-page="about">
+<div class="site">
+  <div data-slot="nav"></div>
+
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div>
+        <span class="eyebrow"><span class="num">05</span> About</span>
+        <h1 style="margin-top:32px">Two founders.<br>One <em>promise.</em></h1>
+      </div>
+      <div>
+        <p>We started Tailored AI because every small-business owner we talked to was drowning in the same repetitive work — and every AI company we talked to was trying to sell them a product instead of solving the problem.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="manifesto">
+    <div class="manifesto-wrap">
+      <span class="eyebrow"><span class="num">05.1</span> Manifesto</span>
+      <h2 style="margin-top:28px">We don't sell software.<br>We replace <em>the task.</em></h2>
+      <p>The AI industry in 2026 is crowded with tools that promise to "empower" your team. Most don't. They sit in a tab nobody opens, generate slightly-wrong first drafts, and get billed per seat until someone remembers to cancel.</p>
+      <p>We think that model is broken for the people we care about most — the owners of small businesses who feel the payroll every two weeks.</p>
+      <p>So <em>we built the opposite.</em> One partner. One retainer. Custom automations built for the way your team already works, and maintained for as long as you want them running. The goal is simple and measurable: save you more money than we cost. If we don't, we unwind the retainer and give you the year back.</p>
+      <p>Read that last sentence twice. It's the only promise that matters.</p>
+    </div>
+  </section>
+
+  <section class="founders">
+    <div class="founders-wrap">
+      <span class="eyebrow" style="color:#7c857f"><span class="num" style="color:var(--mint)">05.2</span> Founders</span>
+      <h2 style="margin-top:28px">Ben &amp;&nbsp;<em>Evan.</em></h2>
+
+      <div class="founders-grid">
+        <div class="founder">
+          <div class="fp-tag"><span class="dot"></span><span>Founder · 001</span></div>
+          <div class="fp-portrait" data-initials="BL"></div>
+          <h3>Ben Ledwith</h3>
+          <div class="fp-role">Founder · Client + Operations</div>
+          <p>Spent the last decade on the operator side of SMBs — finance and ops roles at two construction firms and a regional law practice before starting Tailored AI. Knows what a 6am Monday looks like in a back office because he was in it.</p>
+          <p>Ben runs the audit week and the retainer relationships. If you're a client, you have his cell.</p>
+          <dl>
+            <dt>Based</dt><dd>Salt Lake City, UT</dd>
+            <dt>Email</dt><dd>ben@tailoredhq.com</dd>
+            <dt>Direct</dt><dd>(408) 710-1394</dd>
+          </dl>
+        </div>
+        <div class="founder">
+          <div class="fp-tag"><span class="dot"></span><span>Founder · 002</span></div>
+          <div class="fp-portrait" data-initials="ER"></div>
+          <h3>Evan Rose</h3>
+          <div class="fp-role">Co-founder · Head of Engineering</div>
+          <p>Engineer at two AI infrastructure startups before this. Built internal tooling at scale; now writes automations that look less like SaaS and more like the way the work actually happens. Allergic to "AI-powered" anything.</p>
+          <p>Evan runs the builds and the retainers' technical work — the automation you end up with is code he wrote or reviewed.</p>
+          <dl>
+            <dt>Based</dt><dd>Brooklyn, NY</dd>
+            <dt>Email</dt><dd>evan@tailoredhq.com</dd>
+            <dt>Stack</dt><dd>Python · TS · Claude · GPT</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="values">
+    <div class="values-wrap">
+      <div class="values-head">
+        <div><span class="eyebrow"><span class="num">05.3</span> How we work</span></div>
+        <div>
+          <h2>Six rules we wrote down<br>on <em>day one.</em></h2>
+        </div>
+      </div>
+
+      <div class="v-grid">
+        <div class="v-cell">
+          <span class="vc-n">01</span>
+          <h4>Name the job, not the magic.</h4>
+          <p>"Automated billing." Not "AI-powered revenue intelligence." We call the work what it is. If we can't explain an automation in one sentence, we haven't understood the job yet.</p>
+        </div>
+        <div class="v-cell">
+          <span class="vc-n">02</span>
+          <h4>Receipts over adjectives.</h4>
+          <p>Hours saved, dollars saved, tasks removed. Numbers we can show you in your own books. Everything else is marketing.</p>
+        </div>
+        <div class="v-cell">
+          <span class="vc-n">03</span>
+          <h4>We're on the same side of the table.</h4>
+          <p>"We" and "your." Not "clients," "users," "solutions providers." A partner, not a vendor.</p>
+        </div>
+        <div class="v-cell">
+          <span class="vc-n">04</span>
+          <h4>The math has to work.</h4>
+          <p>If your savings haven't beaten our fee by month six, we unwind the retainer. We wrote it into every agreement before we signed our first one.</p>
+        </div>
+        <div class="v-cell">
+          <span class="vc-n">05</span>
+          <h4>Stay on. Forever, if you want.</h4>
+          <p>Most firms sell you a project and disappear. We stay on — one retainer, ongoing tuning, the next automation when you're ready.</p>
+        </div>
+        <div class="v-cell">
+          <span class="vc-n">06</span>
+          <h4>Four clients a quarter. That's it.</h4>
+          <p>We cap onboarding because attention is the product. If you're on the waitlist, you'll hear from one of us in weeks — not months.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="timeline2">
+    <div class="t2-wrap">
+      <span class="eyebrow"><span class="num">05.4</span> Timeline</span>
+      <h2 style="font-family:'Syne',sans-serif;font-weight:700;font-size:56px;letter-spacing:-.028em;line-height:.98;margin-top:28px;margin-bottom:40px">The first twelve months.</h2>
+      <div class="t2-list">
+        <div class="t2-item"><span class="t2-d">Jan 2025</span><div><h4>Ben and Evan meet for coffee.</h4><p>Napkin math: a bookkeeper at Ben's last firm spent fourteen hours a week on invoice matching. Evan had spent the previous year building agents to do exactly that.</p></div></div>
+        <div class="t2-item"><span class="t2-d">Mar 2025</span><div><h4>First client signs.</h4><p>The residential contractor in Case 01. Billing reconciler live by week four, same shape as the audit memo.</p></div></div>
+        <div class="t2-item"><span class="t2-d">Jun 2025</span><div><h4>Six-month refund clause written.</h4><p>After the first client's savings cleared the retainer, we put the clause into every agreement going forward. We've never had to use it.</p></div></div>
+        <div class="t2-item"><span class="t2-d">Sep 2025</span><div><h4>Second automation deployed for Case 01.</h4><p>The Friday PM report. Same retainer, second task removed. This is when the $503,310 chart starts compounding.</p></div></div>
+        <div class="t2-item"><span class="t2-d">Dec 2025</span><div><h4>Full year close for Case 01.</h4><p>$503,310 net saved. 4,020 hours returned. 3.1× return on the retainer. We wrote the case study and kept going.</p></div></div>
+        <div class="t2-item"><span class="t2-d">Q1 2026</span><div><h4>Real estate and legal added.</h4><p>Cases 02 and 03 signed. Four-clients-per-quarter cap becomes a real waitlist for the first time.</p></div></div>
+        <div class="t2-item"><span class="t2-d">Q2 2026</span><div><h4>You're reading this.</h4><p>We're a two-person firm with a waitlist, a refund clause, and a single tagline. The rest is work.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div data-slot="footer"></div>
+</div>
+<script src="scripts/site.js?v=4"></script>
+</body>
+</html>

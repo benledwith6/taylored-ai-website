@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How it works — Tailored AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/site.css?v=5">
+<link rel="stylesheet" href="styles/dark-override.css?v=1">
+<style>
+  .page-hero{background:var(--off-white);padding:80px 48px 60px;border-bottom:1px solid var(--rule)}
+  .page-hero-inner{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end}
+  .page-hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(64px,8vw,124px);line-height:.95;letter-spacing:-.035em}
+  .page-hero h1 em{font-style:normal;color:var(--forest)}
+  .page-hero p{font-size:18px;line-height:1.55;color:var(--text-muted);max-width:46ch;margin-top:20px}
+
+  .timeline{padding:120px 48px;background:var(--pure-white)}
+  .tl-wrap{max-width:1360px;margin:0 auto}
+  .tl-row{
+    display:grid;grid-template-columns:220px 1fr 1fr;gap:48px;
+    padding:56px 0;border-bottom:1px solid var(--rule);align-items:start;
+  }
+  .tl-row:first-child{border-top:1px solid var(--rule)}
+  .tl-meta{display:flex;flex-direction:column;gap:10px;position:sticky;top:96px}
+  .tl-meta .tl-week{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--forest)}
+  .tl-meta .tl-n{font-family:'Syne',sans-serif;font-weight:800;font-size:72px;letter-spacing:-.03em;line-height:1;color:var(--near-black)}
+  .tl-main h3{font-family:'Syne',sans-serif;font-weight:700;font-size:44px;line-height:1;letter-spacing:-.025em;color:var(--near-black);margin-bottom:20px;max-width:14ch}
+  .tl-main p{font-size:17px;line-height:1.65;color:var(--charcoal);max-width:48ch;margin-bottom:14px}
+  .tl-aside{
+    background:var(--off-white);border:1px solid var(--rule);padding:28px 30px;display:flex;flex-direction:column;gap:14px;
+  }
+  .tl-aside h5{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-muted);font-weight:500}
+  .tl-aside ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .tl-aside li{display:grid;grid-template-columns:20px 1fr;gap:10px;font-size:14px;line-height:1.5;color:var(--charcoal);padding-bottom:10px;border-bottom:1px dashed var(--rule)}
+  .tl-aside li:last-child{border-bottom:0;padding-bottom:0}
+  .tl-aside li::before{content:"+";color:var(--forest);font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700}
+  .tl-aside .tl-out{display:flex;justify-content:space-between;padding-top:14px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted)}
+  .tl-aside .tl-out b{color:var(--forest);font-weight:500}
+
+  .pricing{background:var(--near-black);color:var(--soft-white);padding:120px 48px}
+  .pricing-wrap{max-width:1360px;margin:0 auto}
+  .pricing h2{font-size:72px;line-height:.96;letter-spacing:-.03em;font-weight:700;max-width:16ch;margin-bottom:56px}
+  .pricing h2 em{font-style:normal;color:var(--mint)}
+  .pr-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;background:var(--rule-dark);border:1px solid var(--rule-dark)}
+  .pr-card{background:#0f1210;padding:44px 36px;display:flex;flex-direction:column;gap:18px;min-height:440px}
+  .pr-card .pr-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#7c857f;display:flex;gap:8px;align-items:center}
+  .pr-card .pr-tag .dot{width:5px;height:5px;background:var(--mint);border-radius:50%}
+  .pr-card h3{font-family:'Syne',sans-serif;font-weight:700;font-size:32px;letter-spacing:-.02em;color:var(--soft-white)}
+  .pr-card .pr-price{font-family:'Syne',sans-serif;font-weight:800;font-size:56px;letter-spacing:-.03em;color:var(--mint);line-height:.95}
+  .pr-card .pr-price small{font-size:16px;color:#7c857f;font-weight:500;margin-left:6px;letter-spacing:.02em}
+  .pr-card p{font-size:14px;color:#a0a9a3;line-height:1.55;max-width:34ch}
+  .pr-card ul{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:auto}
+  .pr-card ul li{display:grid;grid-template-columns:16px 1fr;gap:10px;font-size:13px;color:#c7cdc8;line-height:1.55;padding-bottom:10px;border-bottom:1px dashed #242724}
+  .pr-card ul li::before{content:"+";color:var(--mint);font-family:'JetBrains Mono',monospace;font-weight:700}
+  .pr-card.feat{background:#121613;border-top:2px solid var(--mint)}
+
+  .faq{padding:120px 48px;background:var(--off-white)}
+  .faq-wrap{max-width:1120px;margin:0 auto}
+  .faq details{border-bottom:1px solid var(--rule);padding:28px 0;cursor:pointer}
+  .faq details:first-child{border-top:1px solid var(--rule)}
+  .faq summary{display:flex;justify-content:space-between;align-items:center;list-style:none;gap:32px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary h4{font-family:'Syne',sans-serif;font-weight:600;font-size:22px;letter-spacing:-.015em;color:var(--near-black)}
+  .faq summary .plus{font-family:'JetBrains Mono',monospace;font-size:16px;color:var(--forest);transition:transform .25s}
+  .faq details[open] summary .plus{transform:rotate(45deg)}
+  .faq details p{margin-top:18px;font-size:16px;line-height:1.65;color:var(--charcoal);max-width:68ch}
+
+  @media (max-width:1100px){
+    .page-hero-inner,.tl-row,.pr-grid{grid-template-columns:1fr}
+    .tl-meta{position:static}
+  }
+</style>
+</head>
+<body data-page="how">
+<div class="site">
+  <div data-slot="nav"></div>
+
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div>
+        <span class="eyebrow" style="margin-bottom:28px"><span class="num">02</span> How it works</span>
+        <h1 style="margin-top:32px">Four weeks in.<br>Paying for itself by <em>week&nbsp;six.</em></h1>
+      </div>
+      <div>
+        <p>No six-month transformation projects. No consultants writing decks about your future state. We sit with your team, find the task eating the most payroll hours, and build one automation that replaces it. Then we stay on.</p>
+        <div class="tickline" style="margin-top:32px">
+          <div><div class="tl-num" style="font-family:'Syne',sans-serif;font-weight:700;font-size:40px">04</div><div class="tl-label">Weeks to live</div></div>
+          <div><div class="tl-num" style="font-family:'Syne',sans-serif;font-weight:700;font-size:40px">01</div><div class="tl-label">Retainer</div></div>
+          <div><div class="tl-num" style="font-family:'Syne',sans-serif;font-weight:700;font-size:40px">∞</div><div class="tl-label">Improvements</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="timeline">
+    <div class="tl-wrap">
+      <div class="tl-row reveal">
+        <div class="tl-meta"><span class="tl-week">Week 01</span><span class="tl-n">01</span><span class="mono" style="color:var(--forest)">Audit</span></div>
+        <div class="tl-main">
+          <h3>We sit with your team for a week.</h3>
+          <p>One of us on-site, one of us over Zoom. We watch the billing, the reporting, the intake, the subcontractor calls — whatever back-office work your staff does by hand. No PowerPoint. No "digital maturity index."</p>
+          <p>At the end of the week we come back with a list of candidates, ranked by payroll hours saved and risk of breakage. You pick one.</p>
+        </div>
+        <div class="tl-aside">
+          <h5>→ What you get</h5>
+          <ul>
+            <li>Task-level shadowing across your admin team</li>
+            <li>A written ranking of 5–8 automation candidates</li>
+            <li>Hours-saved and dollar-saved estimate per task</li>
+            <li>A recommendation — the one we'd build first</li>
+          </ul>
+          <div class="tl-out"><span>→ Deliverable</span><b>Audit memo (PDF)</b></div>
+        </div>
+      </div>
+
+      <div class="tl-row reveal">
+        <div class="tl-meta"><span class="tl-week">Weeks 02—04</span><span class="tl-n">02</span><span class="mono" style="color:var(--forest)">Build</span></div>
+        <div class="tl-main">
+          <h3>We build one custom automation.</h3>
+          <p>Not a tool you buy. Not a subscription you wire together. A system built around the job — the way your team actually does it. If you use QuickBooks and Gmail, the automation lives there. If you use Procore and a shared drive, so does it.</p>
+          <p>We check in weekly with a demo. You see it come together. No surprises in week four.</p>
+        </div>
+        <div class="tl-aside">
+          <h5>→ Working style</h5>
+          <ul>
+            <li>One engineer + one ops lead from our side</li>
+            <li>Weekly 30-minute demo, recorded</li>
+            <li>Direct Slack / email access — no ticketing</li>
+            <li>We write documentation as we build</li>
+          </ul>
+          <div class="tl-out"><span>→ Deliverable</span><b>Live automation · v1</b></div>
+        </div>
+      </div>
+
+      <div class="tl-row reveal">
+        <div class="tl-meta"><span class="tl-week">Weeks 04—06</span><span class="tl-n">03</span><span class="mono" style="color:var(--forest)">Deploy</span></div>
+        <div class="tl-main">
+          <h3>It runs. Your team supervises.</h3>
+          <p>We roll out to one person or one workflow first. They watch it work, catch edge cases, and we fix them live. By the end of week six it's running the whole task — and the person who used to do it is doing higher-value work.</p>
+          <p>We train your team in writing, in person, and on video. No change management theater.</p>
+        </div>
+        <div class="tl-aside">
+          <h5>→ What changes</h5>
+          <ul>
+            <li>One workflow fully replaced — not assisted</li>
+            <li>Monitoring dashboard shared with your team</li>
+            <li>Exception queue: humans still see the edge cases</li>
+            <li>SOPs updated to reflect the new reality</li>
+          </ul>
+          <div class="tl-out"><span>→ Deliverable</span><b>Runbook + training</b></div>
+        </div>
+      </div>
+
+      <div class="tl-row reveal">
+        <div class="tl-meta"><span class="tl-week">Ongoing</span><span class="tl-n">04</span><span class="mono" style="color:var(--forest)">Partner</span></div>
+        <div class="tl-main">
+          <h3>We stay on to keep it sharp.</h3>
+          <p>Models drift. Processes change. New vendors appear. We keep the automation sharp and, when it makes sense, hand over the next one — for the same retainer. Most of our clients replace two more tasks in the first twelve months.</p>
+          <p>If the math stops working, we unwind. We wrote it into the agreement.</p>
+        </div>
+        <div class="tl-aside">
+          <h5>→ What the retainer covers</h5>
+          <ul>
+            <li>Ongoing monitoring + performance tuning</li>
+            <li>Prompt / model updates as the landscape changes</li>
+            <li>One new automation every 4–6 months, included</li>
+            <li>Direct access to both founders for anything urgent</li>
+          </ul>
+          <div class="tl-out"><span>→ Cadence</span><b>Monthly · forever</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing">
+    <div class="pricing-wrap">
+      <span class="eyebrow" style="color:#7c857f"><span class="num" style="color:var(--mint)">02.1</span> Pricing</span>
+      <h2 style="margin-top:28px">One retainer.<br>Scales with your <em>team size.</em></h2>
+
+      <div class="pr-grid">
+        <div class="pr-card">
+          <div class="pr-tag"><span class="dot"></span><span>Starter</span></div>
+          <h3>For 1–15 admin staff.</h3>
+          <div class="pr-price">$9,500<small>/ month</small></div>
+          <p>The fit for small construction, RE, and boutique legal or advisory shops. One automation live by week four.</p>
+          <ul>
+            <li>One custom automation, built + deployed</li>
+            <li>Unlimited tuning on that automation</li>
+            <li>One new automation every 6 months</li>
+            <li>Monthly reporting · direct founder access</li>
+          </ul>
+        </div>
+        <div class="pr-card feat">
+          <div class="pr-tag"><span class="dot"></span><span>Growth · most common</span></div>
+          <h3>For 15–40 admin staff.</h3>
+          <div class="pr-price">$13,500<small>/ month</small></div>
+          <p>Where the $503,310 reference client sits. Two automations in the first year, ongoing sharpening included.</p>
+          <ul>
+            <li>Everything in Starter</li>
+            <li>One new automation every 4 months</li>
+            <li>On-site audit week included annually</li>
+            <li>Exception queue staffed by our team</li>
+          </ul>
+        </div>
+        <div class="pr-card">
+          <div class="pr-tag"><span class="dot"></span><span>Scale</span></div>
+          <h3>For 40+ admin staff.</h3>
+          <div class="pr-price">Custom<small>· from $22k</small></div>
+          <p>For owners with a real back-office bench. Built for firms replacing 4+ tasks a year.</p>
+          <ul>
+            <li>Everything in Growth</li>
+            <li>Dedicated engineer on your account</li>
+            <li>Quarterly on-site + Slack workspace</li>
+            <li>Custom SLAs for uptime and response</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="faq-wrap">
+      <span class="eyebrow"><span class="num">02.2</span> FAQ</span>
+      <h2 style="font-size:64px;margin-top:28px;margin-bottom:48px;letter-spacing:-.028em;line-height:.98">Questions before<br>you sign?</h2>
+      <details open>
+        <summary><h4>Are we buying software or a service?</h4><span class="plus">+</span></summary>
+        <p>A service with software inside it. We build the automation, deploy it in your stack, and maintain it for you. You don't license a product; you pay a retainer for the work and the upkeep.</p>
+      </details>
+      <details>
+        <summary><h4>What happens if we want to leave?</h4><span class="plus">+</span></summary>
+        <p>We hand over the code, the prompts, the runbook, and an engineer's time to transition your team. You keep what we built. The retainer is month-to-month after the first ninety days.</p>
+      </details>
+      <details>
+        <summary><h4>Do you use off-the-shelf AI models?</h4><span class="plus">+</span></summary>
+        <p>Yes, where they're the best fit. We use frontier models from Anthropic, OpenAI, and others, wrapped in custom logic, evaluation, and guardrails written for your specific workflow. That's the "tailored" part.</p>
+      </details>
+      <details>
+        <summary><h4>Is our data safe?</h4><span class="plus">+</span></summary>
+        <p>We sign your NDA, run models with zero-retention agreements, and keep customer data out of training. Happy to walk through our security architecture in the audit week.</p>
+      </details>
+      <details>
+        <summary><h4>What industries do you not work with?</h4><span class="plus">+</span></summary>
+        <p>We focus on construction, real estate, legal, and financial advisors in 2026. If you're outside those, we'll tell you — and we'll point you somewhere good.</p>
+      </details>
+      <details>
+        <summary><h4>What if the math doesn't work?</h4><span class="plus">+</span></summary>
+        <p>If your savings haven't beaten our retainer by month six, we unwind the engagement and refund the last three months. We've never had to.</p>
+      </details>
+    </div>
+  </section>
+
+  <div data-slot="footer"></div>
+</div>
+<script src="scripts/site.js?v=4"></script>
+</body>
+</html>
